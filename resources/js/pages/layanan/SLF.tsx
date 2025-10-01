@@ -170,6 +170,93 @@ export default function SLF() {
 
             <AdvantageSection {...advantageData} />
 
+            {/* Section Roadmap Proses Audit Struktur */}
+            <section className="py-16 bg-gradient-to-br from-[#DBF9FF] to-[#E8F8FF]">
+                <div className="container mx-auto px-4">
+                    {/* Header Section */}
+                    <div className="text-center mb-16">
+                        <p className="text-blue-600 font-medium text-lg mb-2 italic">Roadmap</p>
+                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+                            Proses Audit Struktur Kami
+                        </h2>
+                    </div>
+
+                    {/* Roadmap Steps */}
+                    <div className="max-w-6xl mx-auto">
+                        {/* Baris 1: 3 Cards */}
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                            {/* Step 1 - Konsultasi Gratis */}
+                            <div className="relative">
+                                <div className="bg-[#1E40AF] text-white rounded-xl p-6 pt-10 shadow-lg relative">
+                                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-[#FF6B35] rounded-full flex items-center justify-center text-white font-bold text-lg">
+                                        01
+                                    </div>
+                                    <h3 className="text-lg font-bold mb-3 text-center">Konsultasi Gratis</h3>
+                                    <p className="text-sm leading-relaxed opacity-90 text-center">
+                                        Konsultasi mengenai kebutuhan SLF sesuai dengan kondisi bangunan Anda
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* Step 2 - Kajian Teknis */}
+                            <div className="relative">
+                                <div className="bg-white text-gray-800 rounded-xl p-6 pt-10 shadow-lg relative border border-gray-100">
+                                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-[#FF6B35] rounded-full flex items-center justify-center text-white font-bold text-lg">
+                                        02
+                                    </div>
+                                    <h3 className="text-lg font-bold mb-3 text-center text-[#1E40AF]">Kajian Teknis</h3>
+                                    <p className="text-sm leading-relaxed text-gray-600 text-center">
+                                        Survey lapangan & audit struktur untuk mengetahui kondisi bangunan
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* Step 3 - Pengajuan Resmi */}
+                            <div className="relative">
+                                <div className="bg-[#1E40AF] text-white rounded-xl p-6 pt-10 shadow-lg relative">
+                                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-[#FF6B35] rounded-full flex items-center justify-center text-white font-bold text-lg">
+                                        03
+                                    </div>
+                                    <h3 className="text-lg font-bold mb-3 text-center">Pengajuan Resmi</h3>
+                                    <p className="text-sm leading-relaxed opacity-90 text-center">
+                                        Pengajuan berkas resmi ke dinas terkait untuk proses sertifikasi
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Baris 2: 2 Cards di Tengah */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+                            {/* Step 4 - Penyusunan Dokumen */}
+                            <div className="relative">
+                                <div className="bg-white text-gray-800 rounded-xl p-6 pt-10 shadow-lg relative border border-gray-100">
+                                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-[#FF6B35] rounded-full flex items-center justify-center text-white font-bold text-lg">
+                                        04
+                                    </div>
+                                    <h3 className="text-lg font-bold mb-3 text-center text-[#1E40AF]">Penyusunan Dokumen</h3>
+                                    <p className="text-sm leading-relaxed text-gray-600 text-center">
+                                        Penyusunan dokumen lengkap sesuai persyaratan sertifikasi
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* Step 5 - SLF Terbit */}
+                            <div className="relative">
+                                <div className="bg-[#1E40AF] text-white rounded-xl p-6 pt-10 shadow-lg relative">
+                                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-[#FF6B35] rounded-full flex items-center justify-center text-white font-bold text-lg">
+                                        05
+                                    </div>
+                                    <h3 className="text-lg font-bold mb-3 text-center">SLF Terbit</h3>
+                                    <p className="text-sm leading-relaxed opacity-90 text-center">
+                                        Sertifikat Laik Fungsi resmi terbit & siap digunakan
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <Footer />
         </>
     );
