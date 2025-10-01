@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
 import { Link } from '@inertiajs/react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -48,7 +48,7 @@ export default function Header() {
                                 >
                                     <div className="flex items-center space-x-8">
                                         <a
-                                            href="#"
+                                            href="/"
                                             className="text-lg font-semibold tracking-wide text-blue-600 uppercase transition-colors hover:text-blue-700"
                                         >
                                             BERANDA
@@ -74,38 +74,38 @@ export default function Header() {
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                                 </svg>
                                             </button>
-                                            
+
                                             {/* Dropdown Menu */}
                                             {isServicesDropdownOpen && (
-                                                <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+                                                <div className="absolute top-full left-0 z-50 mt-2 w-64 rounded-lg border border-gray-200 bg-white shadow-lg">
                                                     <div className="py-2">
                                                         <Link
                                                             href="/layanan/slf"
-                                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                                                            className="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-blue-50 hover:text-blue-600"
                                                         >
                                                             SLF (Sertifikat Laik Fungsi)
                                                         </Link>
                                                         <a
                                                             href="#"
-                                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                                                            className="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-blue-50 hover:text-blue-600"
                                                         >
                                                             PBG (Persetujuan Bangunan Gedung)
                                                         </a>
                                                         <a
                                                             href="#"
-                                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                                                            className="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-blue-50 hover:text-blue-600"
                                                         >
                                                             DED (Detail Engineering Design)
                                                         </a>
                                                         <a
                                                             href="#"
-                                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                                                            className="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-blue-50 hover:text-blue-600"
                                                         >
                                                             Audit Struktur
                                                         </a>
                                                         <a
                                                             href="#"
-                                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                                                            className="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-blue-50 hover:text-blue-600"
                                                         >
                                                             Manajemen Konstruksi
                                                         </a>
@@ -160,13 +160,13 @@ export default function Header() {
                         {isMenuOpen && (
                             <div className="lg:hidden">
                                 <div className="space-y-1 border-t bg-white px-2 pt-2 pb-3 sm:px-3">
-                                    <a href="#" className="block px-3 py-2 font-semibold text-blue-600">
+                                    <a href="/" className="block px-3 py-2 font-semibold text-blue-600">
                                         BERANDA
                                     </a>
                                     <a href="#" className="block px-3 py-2 text-gray-700 hover:text-blue-600">
                                         TENTANG KAMI
                                     </a>
-                                    
+
                                     {/* Mobile Services Dropdown */}
                                     <div>
                                         <button
@@ -183,7 +183,7 @@ export default function Header() {
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                             </svg>
                                         </button>
-                                        
+
                                         {/* Mobile Dropdown Items */}
                                         {isServicesDropdownOpen && (
                                             <div className="ml-4 space-y-1">
@@ -223,8 +223,8 @@ export default function Header() {
                                 REGULASI
                             </h1>
                             <p className="mb-8 text-lg leading-relaxed text-white/90 sm:text-xl">
-                                Retro Hadir sebagai mitra terpercaya dalam memberikan solusi SLF dan K3 PU. Kami memiliki pengalaman dan
-                                komitmen untuk memberikan layanan terbaik dengan standar yang tinggi dan sesuai regulasi.
+                                Retro Hadir sebagai mitra terpercaya dalam memberikan solusi SLF dan K3 PU. Kami memiliki pengalaman dan komitmen
+                                untuk memberikan layanan terbaik dengan standar yang tinggi dan sesuai regulasi.
                             </p>
                             <button className="rounded-lg bg-blue-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-colors duration-300 hover:bg-blue-700 hover:shadow-xl">
                                 KONSULTASI SEKARANG
