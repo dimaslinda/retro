@@ -1,10 +1,32 @@
 import { Link } from '@inertiajs/react';
 import { useEffect, useRef, useState } from 'react';
 
-export default function Header() {
+interface HeroContent {
+    title: string;
+    description: string;
+    buttonText: string;
+    buttonAction?: () => void;
+    backgroundImage?: string;
+}
+
+interface HeaderProps {
+    heroContent?: HeroContent;
+}
+
+export default function Header({ heroContent }: HeaderProps) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
+
+    // Default hero content
+    const defaultHeroContent: HeroContent = {
+        title: "BANGUN LEBIH AMAN,\nEFISIEN, DAN SESUAI\nREGULASI",
+        description: "Retro Hadir sebagai mitra terpercaya dalam memberikan solusi SLF dan K3 PU. Kami memiliki pengalaman dan komitmen untuk memberikan layanan terbaik dengan standar yang tinggi dan sesuai regulasi.",
+        buttonText: "KONSULTASI SEKARANG",
+        backgroundImage: "/img/general/banner.png"
+    };
+
+    const currentHeroContent = heroContent || defaultHeroContent;
 
     // Close dropdown when clicking outside
     useEffect(() => {
@@ -20,13 +42,22 @@ export default function Header() {
         };
     }, []);
 
+    const handleButtonClick = () => {
+        if (currentHeroContent.buttonAction) {
+            currentHeroContent.buttonAction();
+        } else {
+            // Default action - bisa disesuaikan
+            console.log('Default button action');
+        }
+    };
+
     return (
         <div className="lg:p-4 xl:p-10">
             {/* Hero Section with Background */}
             <div
                 className="relative min-h-screen bg-cover bg-center bg-no-repeat lg:rounded-3xl"
                 style={{
-                    backgroundImage: `linear-gradient(270deg, rgba(0, 0, 0, 0.00) 21.06%, rgba(0, 0, 0, 0.58) 100%), url('/img/general/banner.png')`,
+                    backgroundImage: `linear-gradient(270deg, rgba(0, 0, 0, 0.00) 21.06%, rgba(0, 0, 0, 0.58) 100%), url('${currentHeroContent.backgroundImage || defaultHeroContent.backgroundImage}')`,
                 }}
             >
                 {/* Navigation Bar */}
@@ -34,7 +65,7 @@ export default function Header() {
                     <div className="mx-auto max-w-7xl">
                         <div className="flex items-start justify-between p-6 lg:p-0">
                             {/* Logo */}
-                            <div className="flex items-center pt-3">
+                            <div className="flex items-center pl-3 pt-3">
                                 <img src="/img/general/logo.png" alt="Retro Ciptakarsa Nusantara" className="h-10 w-auto xl:h-15" />
                             </div>
 
@@ -211,23 +242,26 @@ export default function Header() {
                     </div>
                 </nav>
 
-                {/* Hero Content */}
-                <div className="relative z-10 flex min-h-[calc(100vh-4rem)] justify-center px-4 pt-10 sm:px-6 md:items-center md:pt-0 lg:px-8">
+                {/* Hero Content - Now Dynamic */}
+                <div className="relative flex min-h-[calc(100vh-4rem)] justify-center px-4 pt-10 sm:px-6 md:items-center md:pt-0 lg:px-8">
                     <div className="mx-auto w-full max-w-7xl">
                         <div className="max-w-3xl">
                             <h1 className="mb-6 text-3xl leading-tight font-bold text-white sm:text-5xl lg:text-6xl">
-                                BANGUN LEBIH AMAN,
-                                <br />
-                                EFISIEN, DAN SESUAI
-                                <br />
-                                REGULASI
+                                {currentHeroContent.title.split('\n').map((line, index) => (
+                                    <span key={index}>
+                                        {line}
+                                        {index < currentHeroContent.title.split('\n').length - 1 && <br />}
+                                    </span>
+                                ))}
                             </h1>
                             <p className="mb-8 text-lg leading-relaxed text-white/90 sm:text-xl">
-                                Retro Hadir sebagai mitra terpercaya dalam memberikan solusi SLF dan K3 PU. Kami memiliki pengalaman dan komitmen
-                                untuk memberikan layanan terbaik dengan standar yang tinggi dan sesuai regulasi.
+                                {currentHeroContent.description}
                             </p>
-                            <button className="rounded-lg bg-blue-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-colors duration-300 hover:bg-blue-700 hover:shadow-xl">
-                                KONSULTASI SEKARANG
+                            <button 
+                                onClick={handleButtonClick}
+                                className="rounded-lg bg-blue-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-colors duration-300 hover:bg-blue-700 hover:shadow-xl"
+                            >
+                                {currentHeroContent.buttonText}
                             </button>
                         </div>
                     </div>

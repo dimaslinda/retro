@@ -1,33 +1,60 @@
 import { Head } from '@inertiajs/react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import AboutServiceSection from '../../components/AboutServiceSection';
 
 export default function SLF() {
+    const slfHeroContent = {
+        title: "Bangunan Aman, Legal, dan Bernilai Tinggi Dimulai dari Sini!",
+        description: "Retro hadir sebagai mitra terpercaya dalam konsultaN sipil. Dari izin SLF & PBG, audit struktur, hingga pembangunan. Kami siap memastikan proyek Anda berjalan tepat, aman, dan berkelanjutan.",
+        buttonText: "Konsultasi Sekarang",
+        buttonAction: () => {
+            // Scroll ke section konsultasi
+            const consultSection = document.querySelector('#konsultasi-slf');
+            if (consultSection) {
+                consultSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        },
+        backgroundImage: "/img/general/bg-slf.png" // Menggunakan gambar yang sama dulu, bisa diganti nanti
+    };
+
+    // Data untuk AboutServiceSection
+    const slfAboutData = {
+        badge: "Tentang SLF",
+        title: "Apa Itu Sertifikat\nLaik Fungsi (SLF)?",
+        description: [
+            "SLF adalah sertifikat yang diberikan pemerintah daerah sebagai bukti bahwa bangunan fungsi bangunan telah sesuai dengan rencana teknis dan layak fungsi sesuai dengan ketentuan dalam undang-undang bangunan gedung."
+        ],
+        featuresTitle: "SLF menjamin bangunan Anda:",
+        features: [
+            {
+                label: "AMAN",
+                description: "Struktur kuat, tahan bencana, dilengkapi sistem proteksi kebakaran."
+            },
+            {
+                label: "SEHAT", 
+                description: "Ventilasi udara, pencahayaan, dan sanitasi terjamin."
+            },
+            {
+                label: "NYAMAN",
+                description: "Lingkungan bangunan membuat penghuni merasa betah."
+            },
+            {
+                label: "MUDAH",
+                description: "Akses ramah difabel dan mudah dijangkau siapa pun."
+            }
+        ],
+        image: {
+            src: "/img/general/profile-slf.png",
+            alt: "Pekerja konstruksi sedang melakukan inspeksi bangunan"
+        }
+    };
+
     return (
         <>
-            <Head title="SLF - Sertifikat Laik Fungsi | Retro Engineering" />
-            <Header />
-            
-            <section className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-white py-20">
-                <div className="container mx-auto px-6">
-                    <div className="max-w-4xl mx-auto text-center">
-                        <h1 className="text-5xl md:text-6xl font-bold mb-6">
-                            Sertifikat Laik Fungsi
-                        </h1>
-                        <p className="text-xl md:text-2xl mb-8 text-blue-100">
-                            Layanan profesional untuk memastikan bangunan Anda memenuhi standar keselamatan dan kelayakan fungsi sesuai peraturan yang berlaku
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <button className="bg-white text-blue-900 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300">
-                                Konsultasi Gratis
-                            </button>
-                            <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-900 transition-all duration-300">
-                                Download Brosur
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <Header heroContent={slfHeroContent} />
+
+            <AboutServiceSection {...slfAboutData} />
 
             <section className="py-20 bg-gray-50">
                 <div className="container mx-auto px-6">
@@ -90,6 +117,26 @@ export default function SLF() {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Section Konsultasi - Target dari button action */}
+            <section id="konsultasi-slf" className="py-20 bg-blue-600">
+                <div className="container mx-auto px-6">
+                    <div className="max-w-4xl mx-auto text-center">
+                        <h2 className="text-4xl font-bold text-white mb-6">Siap Mengajukan SLF?</h2>
+                        <p className="text-xl text-blue-100 mb-8">
+                            Hubungi tim ahli kami untuk konsultasi gratis dan dapatkan penawaran terbaik untuk kebutuhan SLF bangunan Anda
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                            <button className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300">
+                                Konsultasi Gratis
+                            </button>
+                            <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300">
+                                Download Brosur SLF
+                            </button>
                         </div>
                     </div>
                 </div>
