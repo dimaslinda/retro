@@ -9,11 +9,7 @@ const Footer: React.FC = () => {
                     {/* Logo Section */}
                     <div className="flex justify-center md:justify-start">
                         <div className="flex flex-col items-center md:items-start">
-                            <img src="/img/general/logo-footer.png" alt="Retro Optitaharsa Nawasena" className="mb-2 h-16 w-auto" />
-                            <div className="text-center md:text-left">
-                                <div className="text-lg font-bold">RETRO OPTITAHARSA</div>
-                                <div className="text-sm tracking-wider">NAWASENA</div>
-                            </div>
+                            <img src="/img/general/logo-footer.png" alt="Retro Optitaharsa Nawasena" className="mb-2 w-52" />
                         </div>
                     </div>
 
@@ -100,7 +96,7 @@ const Footer: React.FC = () => {
                 </div>
 
                 {/* Copyright */}
-                <div className="border-opacity-20 mt-8 border-t border-white pt-6 text-center">
+                <div className="mt-8 pt-6 text-center">
                     <p className="text-opacity-80 text-sm text-white">© PT. Kaizen Enjiniring Nusantara, All Right Reserved.</p>
                 </div>
             </div>
