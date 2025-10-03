@@ -65,7 +65,7 @@ export default function Header({ heroContent }: HeaderProps) {
                     <div className="mx-auto max-w-7xl">
                         <div className="flex items-start justify-between p-6 lg:p-0">
                             {/* Logo */}
-                            <div className="flex items-center pl-3 pt-3">
+                            <div className="flex items-center pl-10 pt-3">
                                 <img src="/img/general/logo.png" alt="Retro Ciptakarsa Nusantara" className="h-10 w-auto xl:h-15" />
                             </div>
 
@@ -116,12 +116,12 @@ export default function Header({ heroContent }: HeaderProps) {
                                                         >
                                                             SLF (Sertifikat Laik Fungsi)
                                                         </Link>
-                                                        <a
-                                                            href="#"
+                                                        <Link
+                                                            href="/layanan/pbg"
                                                             className="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-blue-50 hover:text-blue-600"
                                                         >
                                                             PBG (Persetujuan Bangunan Gedung)
-                                                        </a>
+                                                        </Link>
                                                         <a
                                                             href="#"
                                                             className="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-blue-50 hover:text-blue-600"
@@ -221,9 +221,9 @@ export default function Header({ heroContent }: HeaderProps) {
                                                 <Link href="/layanan/slf" className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600">
                                                     SLF (Sertifikat Laik Fungsi)
                                                 </Link>
-                                                <a href="#" className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600">
+                                                <Link href="/layanan/pbg" className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600">
                                                     PBG (Persetujuan Bangunan Gedung)
-                                                </a>
+                                                </Link>
                                                 <a href="#" className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600">
                                                     DED (Detail Engineering Design)
                                                 </a>
