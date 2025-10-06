@@ -1,17 +1,18 @@
 import { Head } from '@inertiajs/react';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
 import AboutServiceSection from '../../components/AboutServiceSection';
-import WhyNeedSection from '../../components/WhyNeedSection';
 import AdvantageSection from '../../components/AdvantageSection';
-import RoadmapSection from '../../components/RoadmapSection';
 import CtaBannerSection from '../../components/CtaBannerSection';
+import Footer from '../../components/Footer';
+import Header from '../../components/Header';
+import RoadmapSection from '../../components/RoadmapSection';
+import WhyNeedSection from '../../components/WhyNeedSection';
 
 export default function SLF() {
     const slfHeroContent = {
-        title: "Bangunan Aman, Legal, dan Bernilai Tinggi Dimulai dari Sini!",
-        description: "Retro hadir sebagai mitra terpercaya dalam konsultaN sipil. Dari izin SLF & PBG, audit struktur, hingga pembangunan. Kami siap memastikan proyek Anda berjalan tepat, aman, dan berkelanjutan.",
-        buttonText: "Konsultasi Sekarang",
+        title: 'Bangunan Aman, Legal, dan Bernilai Tinggi Dimulai dari Sini!',
+        description:
+            'Retro hadir sebagai mitra terpercaya dalam konsultaN sipil. Dari izin SLF & PBG, audit struktur, hingga pembangunan. Kami siap memastikan proyek Anda berjalan tepat, aman, dan berkelanjutan.',
+        buttonText: 'Konsultasi Sekarang',
         buttonAction: () => {
             // Scroll ke section konsultasi
             const consultSection = document.querySelector('#konsultasi-slf');
@@ -19,100 +20,130 @@ export default function SLF() {
                 consultSection.scrollIntoView({ behavior: 'smooth' });
             }
         },
-        backgroundImage: "/img/general/bg-slf.png" // Menggunakan gambar yang sama dulu, bisa diganti nanti
+        backgroundImage: '/img/general/bg-slf.png', // Menggunakan gambar yang sama dulu, bisa diganti nanti
     };
 
     // Data untuk AboutServiceSection
     const slfAboutData = {
-        badge: "Tentang SLF",
-        title: "Apa Itu Sertifikat\nLaik Fungsi (SLF)?",
+        badge: 'Tentang SLF',
+        title: 'Apa Itu Sertifikat\nLaik Fungsi (SLF)?',
         description: [
-            "SLF adalah sertifikat yang diberikan pemerintah daerah sebagai bukti bahwa bangunan fungsi bangunan telah sesuai dengan rencana teknis dan layak fungsi sesuai dengan ketentuan dalam undang-undang bangunan gedung."
+            'SLF adalah sertifikat yang diberikan pemerintah daerah sebagai bukti bahwa bangunan fungsi bangunan telah sesuai dengan rencana teknis dan layak fungsi sesuai dengan ketentuan dalam undang-undang bangunan gedung.',
         ],
-        featuresTitle: "SLF menjamin bangunan Anda:",
+        featuresTitle: 'SLF menjamin bangunan Anda:',
         features: [
             {
-                label: "AMAN",
-                description: "Struktur kuat, tahan bencana, dilengkapi sistem proteksi kebakaran."
+                label: 'AMAN',
+                description: 'Struktur kuat, tahan bencana, dilengkapi sistem proteksi kebakaran.',
             },
             {
-                label: "SEHAT", 
-                description: "Ventilasi udara, pencahayaan, dan sanitasi terjamin."
+                label: 'SEHAT',
+                description: 'Ventilasi udara, pencahayaan, dan sanitasi terjamin.',
             },
             {
-                label: "NYAMAN",
-                description: "Lingkungan bangunan membuat penghuni merasa betah."
+                label: 'NYAMAN',
+                description: 'Lingkungan bangunan membuat penghuni merasa betah.',
             },
             {
-                label: "MUDAH",
-                description: "Akses ramah difabel dan mudah dijangkau siapa pun."
-            }
+                label: 'MUDAH',
+                description: 'Akses ramah difabel dan mudah dijangkau siapa pun.',
+            },
         ],
         image: {
-            src: "/img/general/profile-slf.png",
-            alt: "Pekerja konstruksi sedang melakukan inspeksi bangunan"
-        }
+            src: '/img/general/profile-slf.png',
+            alt: 'Pekerja konstruksi sedang melakukan inspeksi bangunan',
+        },
     };
 
     // Data untuk WhyNeedSection
     const whyNeedSLFData = {
-        title: "Kenapa Anda<br />Harus Punya<br />SLF?",
-        subtitle: "SLF adalah dokumen wajib yang harus dimiliki setiap bangunan gedung",
-        backgroundImage: "/img/general/bg-slf2.png",
+        title: 'Kenapa Anda<br />Harus Punya<br />SLF?',
+        subtitle: 'SLF adalah dokumen wajib yang harus dimiliki setiap bangunan gedung',
+        backgroundImage: '/img/general/bg-slf2.png',
         benefits: [
             {
                 icon: (
                     <svg xmlns="http://www.w3.org/2000/svg" width="54" height="54" viewBox="0 0 54 54" fill="none">
-                        <path d="M9 9C9 7.80653 9.47411 6.66193 10.318 5.81802C11.1619 4.97411 12.3065 4.5 13.5 4.5H31.5C32.0967 4.50013 32.6689 4.73726 33.0907 5.15925L44.3408 16.4093C44.7627 16.8311 44.9999 17.4033 45 18V45C45 46.1935 44.5259 47.3381 43.682 48.182C42.8381 49.0259 41.6935 49.5 40.5 49.5H13.5C12.3065 49.5 11.1619 49.0259 10.318 48.182C9.47411 47.3381 9 46.1935 9 45V9ZM39.5685 18L31.5 9.9315V18H39.5685ZM27 9H13.5V45H40.5V22.5H29.25C28.6533 22.5 28.081 22.2629 27.659 21.841C27.2371 21.419 27 20.8467 27 20.25V9ZM18 29.25C18 28.6533 18.2371 28.081 18.659 27.659C19.081 27.2371 19.6533 27 20.25 27H33.75C34.3467 27 34.919 27.2371 35.341 27.659C35.7629 28.081 36 28.6533 36 29.25C36 29.8467 35.7629 30.419 35.341 30.841C34.919 31.2629 34.3467 31.5 33.75 31.5H20.25C19.6533 31.5 19.081 31.2629 18.659 30.841C18.2371 30.419 18 29.8467 18 29.25ZM18 38.25C18 37.6533 18.2371 37.081 18.659 36.659C19.081 36.2371 19.6533 36 20.25 36H33.75C34.3467 36 34.919 36.2371 35.341 36.659C35.7629 37.081 36 37.6533 36 38.25C36 38.8467 35.7629 39.419 35.341 39.841C34.919 40.2629 34.3467 40.5 33.75 40.5H20.25C19.6533 40.5 19.081 40.2629 18.659 39.841C18.2371 39.419 18 38.8467 18 38.25Z" fill="white"/>
+                        <path
+                            d="M9 9C9 7.80653 9.47411 6.66193 10.318 5.81802C11.1619 4.97411 12.3065 4.5 13.5 4.5H31.5C32.0967 4.50013 32.6689 4.73726 33.0907 5.15925L44.3408 16.4093C44.7627 16.8311 44.9999 17.4033 45 18V45C45 46.1935 44.5259 47.3381 43.682 48.182C42.8381 49.0259 41.6935 49.5 40.5 49.5H13.5C12.3065 49.5 11.1619 49.0259 10.318 48.182C9.47411 47.3381 9 46.1935 9 45V9ZM39.5685 18L31.5 9.9315V18H39.5685ZM27 9H13.5V45H40.5V22.5H29.25C28.6533 22.5 28.081 22.2629 27.659 21.841C27.2371 21.419 27 20.8467 27 20.25V9ZM18 29.25C18 28.6533 18.2371 28.081 18.659 27.659C19.081 27.2371 19.6533 27 20.25 27H33.75C34.3467 27 34.919 27.2371 35.341 27.659C35.7629 28.081 36 28.6533 36 29.25C36 29.8467 35.7629 30.419 35.341 30.841C34.919 31.2629 34.3467 31.5 33.75 31.5H20.25C19.6533 31.5 19.081 31.2629 18.659 30.841C18.2371 30.419 18 29.8467 18 29.25ZM18 38.25C18 37.6533 18.2371 37.081 18.659 36.659C19.081 36.2371 19.6533 36 20.25 36H33.75C34.3467 36 34.919 36.2371 35.341 36.659C35.7629 37.081 36 37.6533 36 38.25C36 38.8467 35.7629 39.419 35.341 39.841C34.919 40.2629 34.3467 40.5 33.75 40.5H20.25C19.6533 40.5 19.081 40.2629 18.659 39.841C18.2371 39.419 18 38.8467 18 38.25Z"
+                            fill="white"
+                        />
                     </svg>
                 ),
-                title: "Legalitas Wajib",
-                description: "Sesuai UU No. 28 Tahun 2002 tentang Bangunan Gedung"
+                title: 'Legalitas Wajib',
+                description: 'Sesuai UU No. 28 Tahun 2002 tentang Bangunan Gedung',
             },
             {
                 icon: (
                     <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 56 56" fill="none">
                         <g clipPath="url(#clip0_171_819)">
-                            <path d="M2 53.1601H32M28 53.1601V43.1601H6V53.1601M36 23.1601L54 41.1601M31.148 4.00806L16.808 18.3481C16.0581 19.0982 15.6369 20.1154 15.6369 21.1761C15.6369 22.2367 16.0581 23.2539 16.808 24.0041L23.144 30.3401C23.8941 31.0899 24.9113 31.5112 25.972 31.5112C27.0327 31.5112 28.0499 31.0899 28.8 30.3401L43.14 16.0001C43.8899 15.2499 44.3112 14.2327 44.3112 13.1721C44.3112 12.1114 43.8899 11.0942 43.14 10.3441L36.8 4.00806C36.0499 3.25818 35.0327 2.83691 33.972 2.83691C32.9113 2.83691 31.8941 3.25818 31.144 4.00806H31.148Z" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+                            <path
+                                d="M2 53.1601H32M28 53.1601V43.1601H6V53.1601M36 23.1601L54 41.1601M31.148 4.00806L16.808 18.3481C16.0581 19.0982 15.6369 20.1154 15.6369 21.1761C15.6369 22.2367 16.0581 23.2539 16.808 24.0041L23.144 30.3401C23.8941 31.0899 24.9113 31.5112 25.972 31.5112C27.0327 31.5112 28.0499 31.0899 28.8 30.3401L43.14 16.0001C43.8899 15.2499 44.3112 14.2327 44.3112 13.1721C44.3112 12.1114 43.8899 11.0942 43.14 10.3441L36.8 4.00806C36.0499 3.25818 35.0327 2.83691 33.972 2.83691C32.9113 2.83691 31.8941 3.25818 31.144 4.00806H31.148Z"
+                                stroke="white"
+                                strokeWidth="4"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
                         </g>
                         <defs>
                             <clipPath id="clip0_171_819">
-                                <rect width="56" height="56" fill="white"/>
+                                <rect width="56" height="56" fill="white" />
                             </clipPath>
                         </defs>
                     </svg>
                 ),
-                title: "Hindari Sanksi Berat",
-                description: "Tanpa SLF, siap-siap terkena denda, pencabutan IMB, bahkan pembongkaran."
+                title: 'Hindari Sanksi Berat',
+                description: 'Tanpa SLF, siap-siap terkena denda, pencabutan IMB, bahkan pembongkaran.',
             },
             {
                 icon: (
                     <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 52 52" fill="none">
-                        <path d="M40.9592 3.25H28.4741C28.086 3.24972 27.7135 3.40308 27.4381 3.67657L2.47813 28.6305C1.93174 29.1796 1.625 29.9227 1.625 30.6973C1.625 31.4719 1.93174 32.215 2.47813 32.7641L14.3609 44.6469C14.9102 45.1933 15.6535 45.5001 16.4282 45.5001C17.203 45.5001 17.9463 45.1933 18.4956 44.6469L43.4484 19.7031C43.7219 19.4277 43.8753 19.0553 43.875 18.6672V6.175C43.8769 5.79113 43.8028 5.41068 43.6571 5.05555C43.5113 4.70043 43.2967 4.37764 43.0257 4.10577C42.7547 3.83391 42.4326 3.61833 42.0779 3.47146C41.7232 3.32459 41.343 3.24933 40.9592 3.25Z" stroke="white" strokeWidth="3.25" strokeLinecap="round" strokeLinejoin="round"/>
-                        <path d="M35.75 14.625C35.1072 14.625 34.4789 14.4344 33.9444 14.0773C33.4099 13.7202 32.9934 13.2126 32.7474 12.6187C32.5014 12.0249 32.437 11.3714 32.5624 10.741C32.6879 10.1105 32.9974 9.53143 33.4519 9.0769C33.9064 8.62238 34.4855 8.31285 35.116 8.18745C35.7464 8.06205 36.3999 8.12641 36.9937 8.37239C37.5876 8.61838 38.0952 9.03494 38.4523 9.5694C38.8094 10.1039 39 10.7322 39 11.375C39 12.237 38.6576 13.0636 38.0481 13.6731C37.4386 14.2826 36.612 14.625 35.75 14.625Z" fill="white"/>
-                        <path d="M23.3594 48.75L49.9688 22.1406C50.1011 22.0072 50.2053 21.8486 50.275 21.6741C50.3448 21.4996 50.3788 21.3129 50.375 21.125V8.125" stroke="white" strokeWidth="3.25" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path
+                            d="M40.9592 3.25H28.4741C28.086 3.24972 27.7135 3.40308 27.4381 3.67657L2.47813 28.6305C1.93174 29.1796 1.625 29.9227 1.625 30.6973C1.625 31.4719 1.93174 32.215 2.47813 32.7641L14.3609 44.6469C14.9102 45.1933 15.6535 45.5001 16.4282 45.5001C17.203 45.5001 17.9463 45.1933 18.4956 44.6469L43.4484 19.7031C43.7219 19.4277 43.8753 19.0553 43.875 18.6672V6.175C43.8769 5.79113 43.8028 5.41068 43.6571 5.05555C43.5113 4.70043 43.2967 4.37764 43.0257 4.10577C42.7547 3.83391 42.4326 3.61833 42.0779 3.47146C41.7232 3.32459 41.343 3.24933 40.9592 3.25Z"
+                            stroke="white"
+                            strokeWidth="3.25"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                        <path
+                            d="M35.75 14.625C35.1072 14.625 34.4789 14.4344 33.9444 14.0773C33.4099 13.7202 32.9934 13.2126 32.7474 12.6187C32.5014 12.0249 32.437 11.3714 32.5624 10.741C32.6879 10.1105 32.9974 9.53143 33.4519 9.0769C33.9064 8.62238 34.4855 8.31285 35.116 8.18745C35.7464 8.06205 36.3999 8.12641 36.9937 8.37239C37.5876 8.61838 38.0952 9.03494 38.4523 9.5694C38.8094 10.1039 39 10.7322 39 11.375C39 12.237 38.6576 13.0636 38.0481 13.6731C37.4386 14.2826 36.612 14.625 35.75 14.625Z"
+                            fill="white"
+                        />
+                        <path
+                            d="M23.3594 48.75L49.9688 22.1406C50.1011 22.0072 50.2053 21.8486 50.275 21.6741C50.3448 21.4996 50.3788 21.3129 50.375 21.125V8.125"
+                            stroke="white"
+                            strokeWidth="3.25"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
                     </svg>
                 ),
-                title: "Naikkan Nilai Properti",
-                description: "Bangunan dengan SLF jauh lebih tinggi nilai jual & sewanya."
+                title: 'Naikkan Nilai Properti',
+                description: 'Bangunan dengan SLF jauh lebih tinggi nilai jual & sewanya.',
             },
             {
                 icon: (
                     <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 52 52" fill="none">
-                        <path d="M26 3.25L6.5 9.75V29.25C6.5 40.0207 15.2293 48.75 26 48.75C36.7707 48.75 45.5 40.0207 45.5 29.25V9.75L26 3.25ZM41.8438 29.25C41.8438 37.9996 34.7496 45.0938 26 45.0938C17.2504 45.0938 10.1562 37.9996 10.1562 29.25V12.4922L26 6.90625L41.8438 12.4922V29.25Z" fill="white"/>
-                        <path d="M19.2156 24.1257C19.0461 23.9555 18.8447 23.8204 18.6229 23.7282C18.4012 23.6361 18.1634 23.5886 17.9232 23.5886C17.683 23.5886 17.4452 23.6361 17.2234 23.7282C17.0016 23.8204 16.8002 23.9555 16.6308 24.1257C16.4606 24.2951 16.3255 24.4965 16.2334 24.7183C16.1412 24.9401 16.0938 25.1779 16.0938 25.4181C16.0938 25.6582 16.1412 25.896 16.2334 26.1178C16.3255 26.3396 16.4606 26.541 16.6308 26.7105L23.2019 33.2815L23.3085 33.3882C23.4688 33.5488 23.6592 33.6762 23.8687 33.7631C24.0783 33.85 24.3029 33.8947 24.5298 33.8947C24.7567 33.8947 24.9813 33.85 25.1909 33.7631C25.4005 33.6762 25.5908 33.5488 25.7511 33.3882L37.1007 22.0386C37.2613 21.8783 37.3887 21.6879 37.4756 21.4784C37.5625 21.2688 37.6073 21.0442 37.6073 20.8173C37.6073 20.5904 37.5625 20.3658 37.4756 20.1562C37.3887 19.9466 37.2613 19.7563 37.1007 19.596L36.9585 19.4538C36.7983 19.2932 36.6079 19.1658 36.3983 19.0789C36.1888 18.992 35.9641 18.9473 35.7372 18.9473C35.5104 18.9473 35.2857 18.992 35.0762 19.0789C34.8666 19.1658 34.6762 19.2932 34.516 19.4538L24.5273 29.4374L19.2156 24.1257Z" fill="white"/>
+                        <path
+                            d="M26 3.25L6.5 9.75V29.25C6.5 40.0207 15.2293 48.75 26 48.75C36.7707 48.75 45.5 40.0207 45.5 29.25V9.75L26 3.25ZM41.8438 29.25C41.8438 37.9996 34.7496 45.0938 26 45.0938C17.2504 45.0938 10.1562 37.9996 10.1562 29.25V12.4922L26 6.90625L41.8438 12.4922V29.25Z"
+                            fill="white"
+                        />
+                        <path
+                            d="M19.2156 24.1257C19.0461 23.9555 18.8447 23.8204 18.6229 23.7282C18.4012 23.6361 18.1634 23.5886 17.9232 23.5886C17.683 23.5886 17.4452 23.6361 17.2234 23.7282C17.0016 23.8204 16.8002 23.9555 16.6308 24.1257C16.4606 24.2951 16.3255 24.4965 16.2334 24.7183C16.1412 24.9401 16.0938 25.1779 16.0938 25.4181C16.0938 25.6582 16.1412 25.896 16.2334 26.1178C16.3255 26.3396 16.4606 26.541 16.6308 26.7105L23.2019 33.2815L23.3085 33.3882C23.4688 33.5488 23.6592 33.6762 23.8687 33.7631C24.0783 33.85 24.3029 33.8947 24.5298 33.8947C24.7567 33.8947 24.9813 33.85 25.1909 33.7631C25.4005 33.6762 25.5908 33.5488 25.7511 33.3882L37.1007 22.0386C37.2613 21.8783 37.3887 21.6879 37.4756 21.4784C37.5625 21.2688 37.6073 21.0442 37.6073 20.8173C37.6073 20.5904 37.5625 20.3658 37.4756 20.1562C37.3887 19.9466 37.2613 19.7563 37.1007 19.596L36.9585 19.4538C36.7983 19.2932 36.6079 19.1658 36.3983 19.0789C36.1888 18.992 35.9641 18.9473 35.7372 18.9473C35.5104 18.9473 35.2857 18.992 35.0762 19.0789C34.8666 19.1658 34.6762 19.2932 34.516 19.4538L24.5273 29.4374L19.2156 24.1257Z"
+                            fill="white"
+                        />
                     </svg>
                 ),
-                title: "Rasa Aman & Tenang",
-                description: "Sesuai UU No. 28 Tahun 2002 tentang Bangunan Gedung"
-            }
-        ]
+                title: 'Rasa Aman & Tenang',
+                description: 'Sesuai UU No. 28 Tahun 2002 tentang Bangunan Gedung',
+            },
+        ],
     };
 
     // Data untuk AdvantageSection
     const advantageData = {
-        subtitle: "Keunggulan Kami",
-        title: "Kami Hadir Dengan Keunggulan",
+        subtitle: 'Keunggulan Kami',
+        title: 'Kami Hadir Dengan Keunggulan',
         advantages: [
             {
                 icon: `<svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
@@ -120,8 +151,8 @@ export default function SLF() {
                     <path d="M22.75 30.6251V38.5001L26.25 35.8751L29.75 38.5001V30.6251" stroke="#0B3AB1" stroke-width="2.47059" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M17.5 33.25H8.75C7.82174 33.25 6.9315 32.8813 6.27513 32.2249C5.61875 31.5685 5.25 30.6783 5.25 29.75V12.25C5.25 10.325 6.825 8.75 8.75 8.75H33.25C34.1783 8.75 35.0685 9.11875 35.7249 9.77513C36.3813 10.4315 36.75 11.3217 36.75 12.25V29.75C36.7494 30.3638 36.5874 30.9666 36.2802 31.498C35.973 32.0293 35.5315 32.4706 35 32.7775M10.5 15.75H31.5M10.5 21H15.75M10.5 26.25H14" stroke="#0B3AB1" stroke-width="2.47059" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>`,
-                title: "Tim Berpengalaman",
-                description: "Tim ahli dengan pengalaman bertahun-tahun dalam bidang sertifikasi laik fungsi bangunan gedung"
+                title: 'Tim Berpengalaman',
+                description: 'Tim ahli dengan pengalaman bertahun-tahun dalam bidang sertifikasi laik fungsi bangunan gedung',
             },
             {
                 icon: `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
@@ -135,8 +166,8 @@ export default function SLF() {
                         </clipPath>
                     </defs>
                 </svg>`,
-                title: "Cepat & Transparan",
-                description: "Proses yang cepat dan transparan dengan update progress secara real-time untuk kemudahan Anda"
+                title: 'Cepat & Transparan',
+                description: 'Proses yang cepat dan transparan dengan update progress secara real-time untuk kemudahan Anda',
             },
             {
                 icon: `<svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
@@ -149,25 +180,35 @@ export default function SLF() {
                         </clipPath>
                     </defs>
                 </svg>`,
-                title: "Layanan Lengkap",
-                description: "Menyediakan layanan lengkap mulai dari konsultasi hingga penerbitan sertifikat SLF"
+                title: 'Layanan Lengkap',
+                description: 'Menyediakan layanan lengkap mulai dari konsultasi hingga penerbitan sertifikat SLF',
             },
             {
                 icon: `<svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 46 46" fill="none">
                     <path d="M20.6996 4.59998C18.2596 4.59998 15.9196 5.56926 14.1942 7.29459C12.4689 9.01993 11.4996 11.36 11.4996 13.8C11.4996 16.24 12.4689 18.58 14.1942 20.3054C15.9196 22.0307 18.2596 23 20.6996 23C23.1396 23 25.4797 22.0307 27.205 20.3054C28.9303 18.58 29.8996 16.24 29.8996 13.8C29.8996 11.36 28.9303 9.01993 27.205 7.29459C25.4797 5.56926 23.1396 4.59998 20.6996 4.59998ZM13.7996 13.8C13.7996 11.97 14.5266 10.2149 15.8206 8.92094C17.1146 7.62694 18.8696 6.89998 20.6996 6.89998C22.5296 6.89998 24.2846 7.62694 25.5786 8.92094C26.8726 10.2149 27.5996 11.97 27.5996 13.8C27.5996 15.63 26.8726 17.385 25.5786 18.679C24.2846 19.973 22.5296 20.7 20.6996 20.7C18.8696 20.7 17.1146 19.973 15.8206 18.679C14.5266 17.385 13.7996 15.63 13.7996 13.8ZM9.22031 25.3C8.61449 25.2972 8.0141 25.4142 7.45361 25.6442C6.89312 25.8741 6.38357 26.2125 5.95423 26.6399C5.52488 27.0674 5.1842 27.5754 4.95173 28.1348C4.71927 28.6943 4.5996 29.2941 4.59961 29.9C4.59961 33.7893 6.51551 36.7218 9.51011 38.6331C12.4587 40.5122 16.4331 41.4 20.6996 41.4C21.6457 41.4 22.5733 41.3563 23.4826 41.2689C22.9338 40.5856 22.4574 39.8472 22.0612 39.0655C21.615 39.0885 21.1611 39.1 20.6996 39.1C16.7091 39.1 13.2085 38.2628 10.7475 36.6919C8.33251 35.1509 6.89961 32.913 6.89961 29.9C6.89961 28.6281 7.93001 27.6 9.22031 27.6H22.0773C22.502 26.775 23.0065 26.0084 23.5907 25.3H9.22031ZM43.6996 33.35C43.6996 36.095 42.6092 38.7275 40.6682 40.6685C38.7272 42.6095 36.0946 43.7 33.3496 43.7C30.6046 43.7 27.9721 42.6095 26.0311 40.6685C24.0901 38.7275 22.9996 36.095 22.9996 33.35C22.9996 30.605 24.0901 27.9724 26.0311 26.0314C27.9721 24.0904 30.6046 23 33.3496 23C36.0946 23 38.7272 24.0904 40.6682 26.0314C42.6092 27.9724 43.6996 30.605 43.6996 33.35ZM34.4444 27.278C34.378 27.0387 34.235 26.8277 34.0372 26.6774C33.8395 26.5271 33.598 26.4457 33.3496 26.4457C33.1012 26.4457 32.8597 26.5271 32.662 26.6774C32.4643 26.8277 32.3212 27.0387 32.2548 27.278L31.1577 30.8016H27.5996C26.4864 30.8016 26.0218 32.2897 26.9234 32.9728L29.7984 35.1509L28.7013 38.6745C28.3563 39.7785 29.5707 40.6985 30.4723 40.0154L33.3473 37.8373L36.2223 40.0154C37.1239 40.6985 38.3383 39.7785 37.9933 38.6745L36.8962 35.1509L39.7712 32.9728C40.6728 32.2897 40.2082 30.8016 39.095 30.8016H35.5415L34.4444 27.278Z" fill="#0B3AB1"/>
                 </svg>`,
-                title: "Fokus pada Anda",
-                description: "Pelayanan yang berfokus pada kebutuhan klien dengan pendekatan personal dan solusi terbaik"
-            }
-        ]
+                title: 'Fokus pada Anda',
+                description: 'Pelayanan yang berfokus pada kebutuhan klien dengan pendekatan personal dan solusi terbaik',
+            },
+        ],
     };
 
     const roadmapData = {
         subtitle: 'Roadmap',
         title: 'Proses Audit Struktur Kami',
         steps: [
-            { number: 1, title: 'Konsultasi Gratis', description: 'Konsultasi mengenai kebutuhan SLF sesuai dengan kondisi bangunan Anda', variant: 'blue' },
-            { number: 2, title: 'Kajian Teknis', description: 'Survey lapangan & audit struktur untuk mengetahui kondisi bangunan', variant: 'white' },
+            {
+                number: 1,
+                title: 'Konsultasi Gratis',
+                description: 'Konsultasi mengenai kebutuhan SLF sesuai dengan kondisi bangunan Anda',
+                variant: 'blue',
+            },
+            {
+                number: 2,
+                title: 'Kajian Teknis',
+                description: 'Survey lapangan & audit struktur untuk mengetahui kondisi bangunan',
+                variant: 'white',
+            },
             { number: 3, title: 'Pengajuan Resmi', description: 'Pengajuan berkas resmi ke dinas terkait untuk proses sertifikasi', variant: 'blue' },
             { number: 4, title: 'Penyusunan Dokumen', description: 'Penyusunan dokumen lengkap sesuai persyaratan sertifikasi', variant: 'white' },
             { number: 5, title: 'SLF Terbit', description: 'Sertifikat Laik Fungsi resmi terbit & siap digunakan', variant: 'blue' },
@@ -180,31 +221,51 @@ export default function SLF() {
 
     return (
         <>
-            <Header heroContent={slfHeroContent} />
+            <Head title="Retro Ciptakarsa Nusantara">
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+                <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+            </Head>
+            <div className="min-h-screen font-mons">
+                <Header heroContent={slfHeroContent} />
 
-            <AboutServiceSection {...slfAboutData} />
+                <AboutServiceSection {...slfAboutData} />
 
-            <WhyNeedSection {...whyNeedSLFData} />
+                <WhyNeedSection {...whyNeedSLFData} />
 
-            <AdvantageSection {...advantageData} />
+                <AdvantageSection {...advantageData} />
 
-            {/* Section Roadmap Proses Audit Struktur */}
-            <RoadmapSection {...roadmapData} />
+                {/* Section Roadmap Proses Audit Struktur */}
+                <RoadmapSection
+                    subtitle={roadmapData.subtitle}
+                    title={roadmapData.title}
+                    steps={roadmapData.steps.map((step) => ({
+                        number: step.number,
+                        title: step.title,
+                        description: step.description,
+                        variant: step.variant as 'blue' | 'white' | undefined,
+                    }))}
+                    topCount={roadmapData.topCount}
+                    bgFrom={roadmapData.bgFrom}
+                    bgTo={roadmapData.bgTo}
+                    bottomMaxWidth={roadmapData.bottomMaxWidth}
+                />
 
-            <CtaBannerSection
-                bgImage="/img/general/bg-mitra.png"
-                containerMaxWidth="max-w-7xl"
-                leftImageSrc="/img/general/slf-cta.png"
-                leftImageAlt="SLF CTA"
-                titleParts={["Proses Mudah,", "Hasil", "Maksimal"]}
-                description="Jangan tunda lagi! Setiap hari tanpa SLF adalah risiko besar bagi bangunan Anda. Hubungi kami sekarang dan wujudkan bangunan yang aman, legal, dan bernilai tinggi."
-                buttonLabel="Konsultasi Gratis"
-                buttonHref="#"
-                containerBgClass="bg-[#0B3AB1]"
-                textBgClass="bg-[#0B3AB1] lg:bg-transparent"
-            />
+                <CtaBannerSection
+                    bgImage="/img/general/bg-mitra.png"
+                    containerMaxWidth="max-w-7xl"
+                    leftImageSrc="/img/general/slf-cta.png"
+                    leftImageAlt="SLF CTA"
+                    titleParts={['Proses Mudah,', 'Hasil', 'Maksimal']}
+                    description="Jangan tunda lagi! Setiap hari tanpa SLF adalah risiko besar bagi bangunan Anda. Hubungi kami sekarang dan wujudkan bangunan yang aman, legal, dan bernilai tinggi."
+                    buttonLabel="Konsultasi Gratis"
+                    buttonHref="#"
+                    containerBgClass="bg-[#0B3AB1]"
+                    textBgClass="bg-[#0B3AB1] lg:bg-transparent"
+                />
 
-            <Footer />
+                <Footer />
+            </div>
         </>
     );
 }

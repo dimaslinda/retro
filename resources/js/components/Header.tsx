@@ -1,4 +1,4 @@
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import { useEffect, useRef, useState } from 'react';
 
 interface HeroContent {
@@ -20,13 +20,22 @@ export default function Header({ heroContent }: HeaderProps) {
 
     // Default hero content
     const defaultHeroContent: HeroContent = {
-        title: "BANGUN LEBIH AMAN,\nEFISIEN, DAN SESUAI\nREGULASI",
-        description: "Retro Hadir sebagai mitra terpercaya dalam memberikan solusi SLF dan K3 PU. Kami memiliki pengalaman dan komitmen untuk memberikan layanan terbaik dengan standar yang tinggi dan sesuai regulasi.",
-        buttonText: "KONSULTASI SEKARANG",
-        backgroundImage: "/img/general/banner.png"
+        title: 'BANGUN LEBIH AMAN,\nEFISIEN, DAN SESUAI\nREGULASI',
+        description:
+            'Retro Hadir sebagai mitra terpercaya dalam memberikan solusi SLF dan K3 PU. Kami memiliki pengalaman dan komitmen untuk memberikan layanan terbaik dengan standar yang tinggi dan sesuai regulasi.',
+        buttonText: 'KONSULTASI SEKARANG',
+        backgroundImage: '/img/general/banner.png',
     };
 
     const currentHeroContent = heroContent || defaultHeroContent;
+
+    // Determine current path for active states
+    const page = usePage();
+    const currentPath = (page as any)?.url || (typeof window !== 'undefined' ? window.location.pathname : '/');
+    const isNavActive = (href: string) => currentPath === href;
+    const isServicesActive = currentPath.startsWith('/layanan');
+    const isActiveSLF = currentPath.startsWith('/layanan/slf');
+    const isActivePBG = currentPath.startsWith('/layanan/pbg');
 
     // Close dropdown when clicking outside
     useEffect(() => {
@@ -65,7 +74,7 @@ export default function Header({ heroContent }: HeaderProps) {
                     <div className="mx-auto max-w-7xl">
                         <div className="flex items-start justify-between p-6 lg:p-0">
                             {/* Logo */}
-                            <div className="flex items-center pl-10 pt-3">
+                            <div className="flex items-center pt-3 pl-10">
                                 <img src="/img/general/logo.png" alt="Retro Ciptakarsa Nusantara" className="h-10 w-auto xl:h-15" />
                             </div>
 
@@ -80,20 +89,17 @@ export default function Header({ heroContent }: HeaderProps) {
                                     <div className="flex items-center space-x-8">
                                         <a
                                             href="/"
-                                            className="text-lg font-semibold tracking-wide text-blue-600 uppercase transition-colors hover:text-blue-700"
+                                            className={`text-lg font-semibold tracking-wide uppercase transition-colors ${isNavActive('/') ? 'text-[#0B3AB1]' : 'text-gray-700 hover:text-blue-600'}`}
                                         >
                                             BERANDA
                                         </a>
-                                        <a
-                                            href="#"
-                                            className="text-lg font-medium tracking-wide text-gray-700 uppercase transition-colors hover:text-blue-600"
-                                        >
+                                        <a href="#tentang-kami" className={`text-lg font-semibold tracking-wide uppercase transition-colors`}>
                                             TENTANG KAMI
                                         </a>
                                         <div className="relative" ref={dropdownRef}>
                                             <button
                                                 onClick={() => setIsServicesDropdownOpen(!isServicesDropdownOpen)}
-                                                className="flex items-center text-lg font-medium tracking-wide text-gray-700 uppercase transition-colors hover:text-blue-600"
+                                                className={`flex items-center text-lg font-medium tracking-wide uppercase transition-colors ${isServicesActive ? 'text-[#0B3AB1]' : 'text-gray-700 hover:text-blue-600'}`}
                                             >
                                                 LAYANAN KAMI
                                                 <svg
@@ -112,34 +118,16 @@ export default function Header({ heroContent }: HeaderProps) {
                                                     <div className="py-2">
                                                         <Link
                                                             href="/layanan/slf"
-                                                            className="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-blue-50 hover:text-blue-600"
+                                                            className={`block px-4 py-2 text-sm transition-colors ${isActiveSLF ? 'bg-blue-50 text-[#0B3AB1]' : 'text-gray-700 hover:bg-blue-50 hover:text-blue-600'}`}
                                                         >
                                                             SLF (Sertifikat Laik Fungsi)
                                                         </Link>
                                                         <Link
                                                             href="/layanan/pbg"
-                                                            className="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-blue-50 hover:text-blue-600"
+                                                            className={`block px-4 py-2 text-sm transition-colors ${isActivePBG ? 'bg-blue-50 text-[#0B3AB1]' : 'text-gray-700 hover:bg-blue-50 hover:text-blue-600'}`}
                                                         >
                                                             PBG (Persetujuan Bangunan Gedung)
                                                         </Link>
-                                                        <a
-                                                            href="#"
-                                                            className="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-blue-50 hover:text-blue-600"
-                                                        >
-                                                            DED (Detail Engineering Design)
-                                                        </a>
-                                                        <a
-                                                            href="#"
-                                                            className="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-blue-50 hover:text-blue-600"
-                                                        >
-                                                            Audit Struktur
-                                                        </a>
-                                                        <a
-                                                            href="#"
-                                                            className="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-blue-50 hover:text-blue-600"
-                                                        >
-                                                            Manajemen Konstruksi
-                                                        </a>
                                                     </div>
                                                 </div>
                                             )}
@@ -150,26 +138,47 @@ export default function Header({ heroContent }: HeaderProps) {
 
                             {/* Social Media Icons */}
                             <div className="hidden items-center space-x-3 p-5 lg:flex">
-                                <a href="#" className="rounded-full bg-blue-600 p-2 text-white transition-colors hover:bg-blue-700">
-                                    <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                                <a
+                                    href="https://wa.me/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="WhatsApp"
+                                    className="rounded-full bg-blue-600 p-2 text-white transition-colors hover:bg-blue-700"
+                                >
+                                    <svg className="h-4 w-4 xl:h-7 xl:w-7" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                        <path d="M17.472 14.382c-.297-.149-1.758-.868-2.031-.967-.273-.099-.472-.149-.672.149-.198.297-.771.967-.945 1.165-.173.199-.346.223-.643.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.654-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.346.446-.52.149-.174.198-.297.298-.495.099-.198.05-.372-.025-.521-.074-.149-.672-1.612-.921-2.206-.242-.579-.487-.5-.672-.51l-.572-.01c-.198 0-.52.074-.792.372s-1.039 1.016-1.039 2.479 1.064 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.26.489 1.689.625.709.226 1.354.195 1.865.118.569-.085 1.758-.718 2.007-1.414.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347m-5.353 7.709h-.003a11.768 11.768 0 01-5.999-1.633l-.43-.255-3.555.921.949-3.464-.279-.355a11.78 11.78 0 01-1.804-6.21c0-6.513 5.304-11.817 11.82-11.817 3.157 0 6.112 1.229 8.356 3.463a11.76 11.76 0 013.468 8.345c-.003 6.511-5.307 11.815-11.82 11.815m6.782-18.59A13.205 13.205 0 0011.998 0C5.373 0 .003 5.372 0 11.993a13.19 13.19 0 001.943 6.84L.012 24l5.305-1.392a13.17 13.17 0 006.781 1.861h.006c7.623 0 13.81-6.185 13.813-13.8a13.136 13.136 0 00-3.997-9.82" />
                                     </svg>
                                 </a>
                                 <a href="#" className="rounded-full bg-blue-600 p-2 text-white transition-colors hover:bg-blue-700">
-                                    <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <svg className="h-4 w-4 xl:h-7 xl:w-7" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                                     </svg>
                                 </a>
-                                <a href="#" className="rounded-full bg-blue-600 p-2 text-white transition-colors hover:bg-blue-700">
-                                    <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24c6.624 0 11.99-5.367 11.99-11.987C24.007 5.367 18.641.001 12.017.001z" />
+                                <a
+                                    href="https://facebook.com/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="Facebook"
+                                    className="rounded-full bg-blue-600 p-2 text-white transition-colors hover:bg-blue-700"
+                                >
+                                    <svg className="h-4 w-4 xl:h-7 xl:w-7" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                        <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.09 4.388 23.159 10.125 24v-8.437H7.077V12.07h3.048V9.413c0-3.007 1.792-4.668 4.533-4.668 1.312 0 2.686.235 2.686.235v2.953h-1.513c-1.491 0-1.954.928-1.954 1.879v2.258h3.328l-.532 3.493h-2.796V24C19.612 23.159 24 18.09 24 12.073z" />
                                     </svg>
                                 </a>
                                 <a href="#" className="rounded-full bg-blue-600 p-2 text-white transition-colors hover:bg-blue-700">
-                                    <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M12.004 2.622c-3.23 0-3.631.012-4.895.07-1.26.058-2.122.26-2.871.555-.777.3-1.439.703-2.097 1.361-.658.658-1.061 1.32-1.361 2.097-.295.749-.497 1.611-.555 2.871-.058 1.264-.07 1.665-.07 4.895s.012 3.631.07 4.895c.058 1.26.26 2.122.555 2.871.3.777.703 1.439 1.361 2.097.658.658 1.32 1.061 2.097 1.361.749.295 1.611.497 2.871.555 1.264.058 1.665.07 4.895.07s3.631-.012 4.895-.07c1.26-.058 2.122-.26 2.871-.555.777-.3 1.439-.703 2.097-1.361.658-.658 1.061-1.32 1.361-2.097.295-.749.497-1.611.555-2.871.058-1.264.07-1.665.07-4.895s-.012-3.631-.07-4.895c-.058-1.26-.26-2.122-.555-2.871-.3-.777-.703-1.439-1.361-2.097-.658-.658-1.32-1.061-2.097-1.361-.749-.295-1.611-.497-2.871-.555-1.264-.058-1.665-.07-4.895-.07zm0 2.163c3.204 0 3.584.012 4.85.07 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.06 1.265.072 1.646.072 4.85s-.012 3.584-.072 4.849c-.053 1.17-.249 1.805-.413 2.227-.217.562-.477.96-.896 1.382-.419.419-.819.679-1.381.896-.422.164-1.057.36-2.227.413-1.265.06-1.646.072-4.85.072s-3.584-.012-4.849-.072c-1.17-.053-1.805-.249-2.228-.413-.562-.217-.96-.477-1.382-.896-.419-.419-.679-.819-.896-1.381-.164-.422-.36-1.057-.413-2.227-.06-1.265-.072-1.646-.072-4.85s.012-3.584.072-4.849c.053-1.17.249-1.805.413-2.228.217-.562.477-.96.896-1.382.419-.419.819-.679 1.381-.896.422-.164 1.057-.36 2.227-.413 1.266-.06 1.646-.072 4.85-.072z" />
-                                        <circle cx="12.004" cy="12.004" r="3.592" />
-                                        <circle cx="18.406" cy="5.596" r="1.144" />
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 xl:h-7 xl:w-7" viewBox="0 0 31 31" fill="none">
+                                        <path
+                                            d="M23.146 5.50085C22.206 5.50085 21.3516 6.26989 21.3516 7.29526C21.3516 8.23519 22.1206 9.08967 23.146 9.08967C24.0859 9.08967 24.9404 8.32064 24.9404 7.29526C24.8549 6.26989 24.0859 5.50085 23.146 5.50085Z"
+                                            fill="white"
+                                        />
+                                        <path
+                                            d="M15.1996 7.81128C11.0981 7.81128 7.76562 11.1438 7.76562 15.2453C7.76562 19.3468 11.0981 22.6792 15.1996 22.6792C19.3011 22.6792 22.6336 19.3468 22.6336 15.2453C22.719 11.1438 19.3011 7.81128 15.1996 7.81128ZM15.1996 20.0304C12.5507 20.0304 10.4145 17.8942 10.4145 15.2453C10.4145 12.5964 12.5507 10.4602 15.1996 10.4602C17.8485 10.4602 19.9847 12.5964 19.9847 15.2453C19.9847 17.8942 17.8485 20.0304 15.1996 20.0304Z"
+                                            fill="white"
+                                        />
+                                        <path
+                                            d="M21.1814 30.369H9.04773C4.09174 30.369 -0.00976562 26.2675 -0.00976562 21.2261V9.17792C-0.00976562 4.13648 4.09174 0.120422 9.04773 0.120422H21.0959C26.1373 0.120422 30.1534 4.22193 30.1534 9.17792V21.2261C30.2389 26.2675 26.1373 30.369 21.1814 30.369ZM9.04773 2.94021C5.62981 2.94021 2.81002 5.75999 2.81002 9.17792V21.2261C2.81002 24.644 5.62981 27.4638 9.04773 27.4638H21.0959C24.5138 27.4638 27.3336 24.644 27.3336 21.2261V9.17792C27.3336 5.75999 24.5138 2.94021 21.0959 2.94021H9.04773Z"
+                                            fill="white"
+                                        />
                                     </svg>
                                 </a>
                             </div>
@@ -191,10 +200,13 @@ export default function Header({ heroContent }: HeaderProps) {
                         {isMenuOpen && (
                             <div className="lg:hidden">
                                 <div className="space-y-1 border-t bg-white px-2 pt-2 pb-3 sm:px-3">
-                                    <a href="/" className="block px-3 py-2 font-semibold text-blue-600">
+                                    <a
+                                        href="/"
+                                        className={`block px-3 py-2 font-semibold ${isNavActive('/') ? 'text-[#0B3AB1]' : 'text-gray-700 hover:text-blue-600'}`}
+                                    >
                                         BERANDA
                                     </a>
-                                    <a href="#" className="block px-3 py-2 text-gray-700 hover:text-blue-600">
+                                    <a href="#tentang-kami" className="block px-3 py-2 text-gray-700 hover:text-blue-600">
                                         TENTANG KAMI
                                     </a>
 
@@ -218,21 +230,18 @@ export default function Header({ heroContent }: HeaderProps) {
                                         {/* Mobile Dropdown Items */}
                                         {isServicesDropdownOpen && (
                                             <div className="ml-4 space-y-1">
-                                                <Link href="/layanan/slf" className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600">
+                                                <Link
+                                                    href="/layanan/slf"
+                                                    className={`block px-3 py-2 text-sm transition-colors ${isActiveSLF ? 'text-[#0B3AB1]' : 'text-gray-600 hover:text-blue-600'}`}
+                                                >
                                                     SLF (Sertifikat Laik Fungsi)
                                                 </Link>
-                                                <Link href="/layanan/pbg" className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600">
+                                                <Link
+                                                    href="/layanan/pbg"
+                                                    className={`block px-3 py-2 text-sm transition-colors ${isActivePBG ? 'text-[#0B3AB1]' : 'text-gray-600 hover:text-blue-600'}`}
+                                                >
                                                     PBG (Persetujuan Bangunan Gedung)
                                                 </Link>
-                                                <a href="#" className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600">
-                                                    DED (Detail Engineering Design)
-                                                </a>
-                                                <a href="#" className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600">
-                                                    Audit Struktur
-                                                </a>
-                                                <a href="#" className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600">
-                                                    Manajemen Konstruksi
-                                                </a>
                                             </div>
                                         )}
                                     </div>
@@ -254,10 +263,8 @@ export default function Header({ heroContent }: HeaderProps) {
                                     </span>
                                 ))}
                             </h1>
-                            <p className="mb-8 text-lg leading-relaxed text-white/90 sm:text-xl">
-                                {currentHeroContent.description}
-                            </p>
-                            <button 
+                            <p className="mb-8 text-lg leading-relaxed text-white/90 sm:text-xl">{currentHeroContent.description}</p>
+                            <button
                                 onClick={handleButtonClick}
                                 className="rounded-lg bg-blue-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-colors duration-300 hover:bg-blue-700 hover:shadow-xl"
                             >

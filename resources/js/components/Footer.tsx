@@ -14,23 +14,26 @@ const Footer: React.FC = () => {
                     </div>
 
                     {/* Contact Information */}
-                    <div className="text-center md:text-start">
+                    <div className="text-start">
                         <h3 className="mb-4 text-lg font-semibold">Contact Information</h3>
                         <div className="space-y-2">
-                            <div className="flex items-center justify-center space-x-2 md:justify-start">
+                            <div className="flex items-center justify-start space-x-2">
                                 <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                                     <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                                 </svg>
-                                <span className="text-sm">mashudi_ali@kaizenkonsultan.co.id</span>
+                                <span className="text-sm">marketing@retrokonsultan.id</span>
                             </div>
-                            <div className="flex items-center justify-center space-x-2 md:justify-start">
-                                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                            <div className="flex items-center justify-start space-x-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="none">
+                                    <path
+                                        d="M15.8757 4.09155C15.1117 3.31982 14.2016 2.70794 13.1987 2.2916C12.1957 1.87525 11.1199 1.66277 10.034 1.66655C5.48398 1.66655 1.77565 5.37489 1.77565 9.92489C1.77565 11.3832 2.15898 12.7999 2.87565 14.0499L1.70898 18.3332L6.08398 17.1832C7.29232 17.8416 8.65065 18.1916 10.034 18.1916C14.584 18.1916 18.2923 14.4832 18.2923 9.93322C18.2923 7.72489 17.434 5.64989 15.8757 4.09155ZM10.034 16.7916C8.80065 16.7916 7.59232 16.4582 6.53398 15.8332L6.28398 15.6832L3.68398 16.3666L4.37565 13.8332L4.20898 13.5749C3.52377 12.4807 3.15993 11.2159 3.15898 9.92489C3.15898 6.14155 6.24232 3.05822 10.0257 3.05822C11.859 3.05822 13.584 3.77489 14.8757 5.07489C15.5152 5.71152 16.0221 6.46877 16.3668 7.30274C16.7116 8.13671 16.8873 9.03081 16.884 9.93322C16.9007 13.7166 13.8173 16.7916 10.034 16.7916ZM13.8007 11.6582C13.5923 11.5582 12.5757 11.0582 12.3923 10.9832C12.2007 10.9166 12.0673 10.8832 11.9257 11.0832C11.784 11.2916 11.3923 11.7582 11.2757 11.8916C11.159 12.0332 11.034 12.0499 10.8257 11.9416C10.6173 11.8416 9.95065 11.6166 9.16732 10.9166C8.55065 10.3666 8.14232 9.69155 8.01732 9.48322C7.90065 9.27489 8.00065 9.16655 8.10898 9.05822C8.20065 8.96655 8.31732 8.81655 8.41732 8.69989C8.51732 8.58322 8.55898 8.49155 8.62565 8.35822C8.69232 8.21655 8.65898 8.09989 8.60898 7.99989C8.55898 7.89989 8.14232 6.88322 7.97565 6.46655C7.80898 6.06655 7.63398 6.11655 7.50898 6.10822H7.10898C6.96732 6.10822 6.75065 6.15822 6.55898 6.36655C6.37565 6.57489 5.84232 7.07489 5.84232 8.09155C5.84232 9.10822 6.58398 10.0916 6.68398 10.2249C6.78398 10.3666 8.14232 12.4499 10.209 13.3416C10.7007 13.5582 11.084 13.6832 11.384 13.7749C11.8757 13.9332 12.3257 13.9082 12.684 13.8582C13.084 13.7999 13.909 13.3582 14.0757 12.8749C14.2507 12.3916 14.2507 11.9832 14.1923 11.8916C14.134 11.7999 14.009 11.7582 13.8007 11.6582Z"
+                                        fill="white"
+                                    />
                                 </svg>
-                                <span className="text-sm">0812-1965-0808</span>
+                                <span className="text-sm">0851-1763-5738</span>
                             </div>
-                            <div className="flex items-center justify-center space-x-2 md:justify-start">
+                            <div className="flex items-center justify-start space-x-2">
                                 <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                                 </svg>
@@ -67,7 +70,9 @@ const Footer: React.FC = () => {
 
                                 {/* Instagram */}
                                 <a
-                                    href="#"
+                                    href="https://www.instagram.com/retrokonsultan/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="bg-opacity-20 hover:bg-opacity-30 flex h-10 w-10 items-center justify-center transition-all duration-300"
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 27 27" fill="none">
@@ -80,7 +85,9 @@ const Footer: React.FC = () => {
 
                                 {/* Facebook */}
                                 <a
-                                    href="#"
+                                    href="https://www.tiktok.com/@retro.konsultan"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="bg-opacity-20 hover:bg-opacity-30 flex h-10 w-10 items-center justify-center transition-all duration-300"
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 27 27" fill="none">
