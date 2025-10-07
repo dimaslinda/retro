@@ -1,4 +1,4 @@
-import { Link, usePage } from '@inertiajs/react';
+import { Link } from '@inertiajs/react';
 import { useEffect, useRef, useState } from 'react';
 
 interface HeroContent {
@@ -30,8 +30,7 @@ export default function Header({ heroContent }: HeaderProps) {
     const currentHeroContent = heroContent || defaultHeroContent;
 
     // Determine current path for active states
-    const page = usePage();
-    const currentPath = (page as any)?.url || (typeof window !== 'undefined' ? window.location.pathname : '/');
+    const currentPath = typeof window !== 'undefined' ? window.location.pathname : '/';
     const isNavActive = (href: string) => currentPath === href;
     const isServicesActive = currentPath.startsWith('/layanan');
     const isActiveSLF = currentPath.startsWith('/layanan/slf');
@@ -50,15 +49,6 @@ export default function Header({ heroContent }: HeaderProps) {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, []);
-
-    const handleButtonClick = () => {
-        if (currentHeroContent.buttonAction) {
-            currentHeroContent.buttonAction();
-        } else {
-            // Default action - bisa disesuaikan
-            console.log('Default button action');
-        }
-    };
 
     return (
         <div className="lg:p-4 xl:p-10">
@@ -93,7 +83,7 @@ export default function Header({ heroContent }: HeaderProps) {
                                         >
                                             BERANDA
                                         </a>
-                                        <a href="#tentang-kami" className={`text-lg font-semibold tracking-wide uppercase transition-colors`}>
+                                        <a href="/#tentang-kami" className={`text-lg font-semibold tracking-wide uppercase transition-colors`}>
                                             TENTANG KAMI
                                         </a>
                                         <div className="relative" ref={dropdownRef}>
@@ -139,7 +129,7 @@ export default function Header({ heroContent }: HeaderProps) {
                             {/* Social Media Icons */}
                             <div className="hidden items-center space-x-3 p-5 lg:flex">
                                 <a
-                                    href="https://wa.me/"
+                                    href="https://wa.me/6285117635738?text=Halo%20Retro%2C%20saya%20ingin%20konsultasi"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="WhatsApp"
@@ -149,13 +139,19 @@ export default function Header({ heroContent }: HeaderProps) {
                                         <path d="M17.472 14.382c-.297-.149-1.758-.868-2.031-.967-.273-.099-.472-.149-.672.149-.198.297-.771.967-.945 1.165-.173.199-.346.223-.643.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.654-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.346.446-.52.149-.174.198-.297.298-.495.099-.198.05-.372-.025-.521-.074-.149-.672-1.612-.921-2.206-.242-.579-.487-.5-.672-.51l-.572-.01c-.198 0-.52.074-.792.372s-1.039 1.016-1.039 2.479 1.064 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.26.489 1.689.625.709.226 1.354.195 1.865.118.569-.085 1.758-.718 2.007-1.414.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347m-5.353 7.709h-.003a11.768 11.768 0 01-5.999-1.633l-.43-.255-3.555.921.949-3.464-.279-.355a11.78 11.78 0 01-1.804-6.21c0-6.513 5.304-11.817 11.82-11.817 3.157 0 6.112 1.229 8.356 3.463a11.76 11.76 0 013.468 8.345c-.003 6.511-5.307 11.815-11.82 11.815m6.782-18.59A13.205 13.205 0 0011.998 0C5.373 0 .003 5.372 0 11.993a13.19 13.19 0 001.943 6.84L.012 24l5.305-1.392a13.17 13.17 0 006.781 1.861h.006c7.623 0 13.81-6.185 13.813-13.8a13.136 13.136 0 00-3.997-9.82" />
                                     </svg>
                                 </a>
-                                <a href="#" className="rounded-full bg-blue-600 p-2 text-white transition-colors hover:bg-blue-700">
+                                <a
+                                    href="https://www.linkedin.com/company/pt-retro-ciptaharsa-nawasena/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="LinkedIn"
+                                    className="rounded-full bg-blue-600 p-2 text-white transition-colors hover:bg-blue-700"
+                                >
                                     <svg className="h-4 w-4 xl:h-7 xl:w-7" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                                     </svg>
                                 </a>
                                 <a
-                                    href="https://facebook.com/"
+                                    href="https://www.facebook.com/share/162qfnhdHW/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="Facebook"
@@ -165,7 +161,13 @@ export default function Header({ heroContent }: HeaderProps) {
                                         <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.09 4.388 23.159 10.125 24v-8.437H7.077V12.07h3.048V9.413c0-3.007 1.792-4.668 4.533-4.668 1.312 0 2.686.235 2.686.235v2.953h-1.513c-1.491 0-1.954.928-1.954 1.879v2.258h3.328l-.532 3.493h-2.796V24C19.612 23.159 24 18.09 24 12.073z" />
                                     </svg>
                                 </a>
-                                <a href="#" className="rounded-full bg-blue-600 p-2 text-white transition-colors hover:bg-blue-700">
+                                <a
+                                    href="https://www.instagram.com/retrokonsultan/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="Instagram"
+                                    className="rounded-full bg-blue-600 p-2 text-white transition-colors hover:bg-blue-700"
+                                >
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 xl:h-7 xl:w-7" viewBox="0 0 31 31" fill="none">
                                         <path
                                             d="M23.146 5.50085C22.206 5.50085 21.3516 6.26989 21.3516 7.29526C21.3516 8.23519 22.1206 9.08967 23.146 9.08967C24.0859 9.08967 24.9404 8.32064 24.9404 7.29526C24.8549 6.26989 24.0859 5.50085 23.146 5.50085Z"
@@ -264,12 +266,14 @@ export default function Header({ heroContent }: HeaderProps) {
                                 ))}
                             </h1>
                             <p className="mb-8 text-lg leading-relaxed text-white/90 sm:text-xl">{currentHeroContent.description}</p>
-                            <button
-                                onClick={handleButtonClick}
+                            <a
+                                href="https://wa.me/6285117635738?text=Halo%20Retro%2C%20saya%20ingin%20konsultasi"
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="rounded-lg bg-blue-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-colors duration-300 hover:bg-blue-700 hover:shadow-xl"
                             >
-                                {currentHeroContent.buttonText}
-                            </button>
+                                {currentHeroContent.buttonText || 'KONSULTASI SEKARANG'}
+                            </a>
                         </div>
                     </div>
                 </div>

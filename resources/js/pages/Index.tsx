@@ -1,6 +1,7 @@
 import { Head } from '@inertiajs/react';
 import { gsap } from 'gsap';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useEffect, useRef } from 'react';
 import About from '../components/About';
 import Articles from '../components/Articles';
 import Footer from '../components/Footer';
@@ -9,166 +10,30 @@ import Magazine from '../components/Magazine';
 import ProjectEstimation from '../components/ProjectEstimation';
 import StrategicPartner from '../components/StrategicPartner';
 
-export default function Index() {
-    const [currentSlide, setCurrentSlide] = useState(0);
-    const sliderRef = useRef<HTMLDivElement>(null);
-    const totalSlides = 5;
+interface IndexProps {
+    articles?: WPPost[] | null;
+    articlesError?: string | null;
+}
 
-    // Touch/Drag state
-    const [isDragging, setIsDragging] = useState(false);
-    const [startX, setStartX] = useState(0);
-    const [currentX, setCurrentX] = useState(0);
-    const [dragOffset, setDragOffset] = useState(0);
+interface WPImageSize {
+    source_url?: string;
+}
+interface WPFeaturedMedia {
+    alt_text?: string;
+    source_url?: string;
+    media_details?: { sizes?: Record<string, WPImageSize> };
+}
+interface WPPost {
+    id?: number;
+    date?: string;
+    link?: string;
+    title?: { rendered?: string };
+    excerpt?: { rendered?: string };
+    _embedded?: { ['wp:featuredmedia']?: WPFeaturedMedia[] };
+}
 
-    // Tetapkan jumlah kartu yang ditampilkan ke 3 untuk desktop
-    const cardsPerView = 3;
-    const maxSlideIndex = totalSlides - cardsPerView;
-
-    const goToSlide = useCallback((slideIndex: number) => {
-        if (sliderRef.current) {
-            // Pastikan lebar kartu dan gap konsisten dengan CSS
-            const cardWidth = 300; // lebar kartu yang sesuai
-            const gap = 24; // gap antar kartu
-            const slideWidth = cardWidth + gap;
-            const translateX = -slideIndex * slideWidth;
-
-            gsap.to(sliderRef.current, {
-                x: translateX,
-                duration: 0.8,
-                ease: 'power3.out',
-            });
-
-            setCurrentSlide(slideIndex);
-        }
-    }, []);
-
-    const nextSlide = () => {
-        const nextIndex = currentSlide >= maxSlideIndex ? 0 : currentSlide + 1;
-        goToSlide(nextIndex);
-    };
-
-    const prevSlide = () => {
-        const prevIndex = currentSlide <= 0 ? maxSlideIndex : currentSlide - 1;
-        goToSlide(prevIndex);
-    };
-
-    // Touch/Drag handlers
-    const handleTouchStart = (e: React.TouchEvent) => {
-        setIsDragging(true);
-        setStartX(e.touches[0].clientX);
-        setCurrentX(e.touches[0].clientX);
-    };
-
-    const handleTouchMove = (e: React.TouchEvent) => {
-        if (!isDragging) return;
-
-        const newCurrentX = e.touches[0].clientX;
-        setCurrentX(newCurrentX);
-        const diff = newCurrentX - startX;
-        setDragOffset(diff);
-
-        // Apply drag effect
-        if (sliderRef.current) {
-            // Pastikan lebar kartu dan gap konsisten dengan CSS
-            const cardWidth = 300; // lebar kartu yang sesuai
-            const gap = 24; // gap antar kartu
-            const slideWidth = cardWidth + gap;
-            const baseTranslateX = -currentSlide * slideWidth;
-
-            gsap.set(sliderRef.current, {
-                x: baseTranslateX + diff,
-            });
-        }
-    };
-
-    const handleTouchEnd = () => {
-        if (!isDragging) return;
-
-        setIsDragging(false);
-        const threshold = 50; // minimum drag distance to trigger slide change
-
-        if (Math.abs(dragOffset) > threshold) {
-            if (dragOffset > 0) {
-                // Dragged right - go to previous slide
-                prevSlide();
-            } else {
-                // Dragged left - go to next slide
-                nextSlide();
-            }
-        } else {
-            // Snap back to current slide
-            goToSlide(currentSlide);
-        }
-
-        setDragOffset(0);
-    };
-
-    // Mouse handlers for desktop drag support
-    const handleMouseDown = (e: React.MouseEvent) => {
-        e.preventDefault();
-        setIsDragging(true);
-        setStartX(e.clientX);
-        setCurrentX(e.clientX);
-    };
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            if (!isDragging) {
-                nextSlide();
-            }
-        }, 4000);
-
-        return () => clearInterval(interval);
-    }, [currentSlide, isDragging]);
-
-    // Mouse event listeners for desktop drag
-    useEffect(() => {
-        const handleGlobalMouseMove = (e: MouseEvent) => {
-            if (isDragging) {
-                const newCurrentX = e.clientX;
-                setCurrentX(newCurrentX);
-                const diff = newCurrentX - startX;
-                setDragOffset(diff);
-
-                if (sliderRef.current) {
-                    const cardWidth = 300;
-                    const gap = 24;
-                    const slideWidth = cardWidth + gap;
-                    const baseTranslateX = -currentSlide * slideWidth;
-                    gsap.set(sliderRef.current, { x: baseTranslateX + diff });
-                }
-            }
-        };
-
-        const handleGlobalMouseUp = () => {
-            if (isDragging) {
-                setIsDragging(false);
-                const threshold = 50;
-
-                if (Math.abs(dragOffset) > threshold) {
-                    if (dragOffset > 0) {
-                        prevSlide();
-                    } else {
-                        nextSlide();
-                    }
-                } else {
-                    goToSlide(currentSlide);
-                }
-
-                setDragOffset(0);
-            }
-        };
-
-        if (isDragging) {
-            document.addEventListener('mousemove', handleGlobalMouseMove);
-            document.addEventListener('mouseup', handleGlobalMouseUp);
-        }
-
-        return () => {
-            document.removeEventListener('mousemove', handleGlobalMouseMove);
-            document.removeEventListener('mouseup', handleGlobalMouseUp);
-        };
-    }, [isDragging, startX, dragOffset, currentSlide]);
+export default function Index({ articles, articlesError }: IndexProps) {
+    const containerRef = useRef<HTMLDivElement>(null);
 
     // GSAP animations for magazine images
     useEffect(() => {
@@ -240,15 +105,67 @@ export default function Index() {
         };
     }, []);
 
+    // GSAP scroll reveal effects applied across page sections and common child elements
+    useEffect(() => {
+        if (!containerRef.current) return;
+        gsap.registerPlugin(ScrollTrigger);
+
+        const sections = Array.from(containerRef.current.children) as HTMLElement[];
+
+        sections.forEach((section) => {
+            // Reveal each section on scroll without hiding (no opacity changes)
+            gsap.from(section, {
+                y: 40,
+                duration: 0.8,
+                ease: 'power3.out',
+                immediateRender: false,
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top 90%',
+                    toggleActions: 'play none none reverse',
+                },
+            });
+
+            // Stagger reveal for text-only child elements (exclude images and card containers)
+            const items = gsap.utils.toArray<HTMLElement>(
+                section.querySelectorAll('h1, h2, h3, p, a, button, li'),
+            );
+            if (items.length) {
+                gsap.from(items, {
+                    opacity: 0,
+                    y: 20,
+                    duration: 0.6,
+                    stagger: 0.08,
+                    ease: 'power2.out',
+                    immediateRender: false,
+                    clearProps: 'transform,opacity',
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'top 92%',
+                        toggleActions: 'play none none reverse',
+                    },
+                });
+            }
+        });
+
+        return () => {
+            ScrollTrigger.getAll().forEach((st) => st.kill());
+            gsap.killTweensOf(sections);
+        };
+    }, []);
+
     return (
         <>
             <Head title="Retro Ciptakarsa Nusantara">
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-                <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+                <link
+                    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+                    rel="stylesheet"
+                />
             </Head>
 
-            <div className="min-h-screen font-mons">
+            <div className="min-h-screen font-mons" ref={containerRef}>
                 {/* Header Component */}
                 <Header />
                 {/* About Component */}
@@ -260,7 +177,7 @@ export default function Index() {
                 <StrategicPartner />
 
                 {/* Artikel Section */}
-                <Articles />
+                <Articles articles={articles} articlesError={articlesError} />
 
                 {/* Magazine Section */}
                 <Magazine />

@@ -33,12 +33,6 @@ const Footer: React.FC = () => {
                                 </svg>
                                 <span className="text-sm">0851-1763-5738</span>
                             </div>
-                            <div className="flex items-center justify-start space-x-2">
-                                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                                </svg>
-                                <span className="text-sm">(021) 22975899</span>
-                            </div>
                         </div>
                     </div>
 
@@ -49,7 +43,10 @@ const Footer: React.FC = () => {
                             <div className="flex justify-center space-x-4 md:justify-end">
                                 {/* LinkedIn */}
                                 <a
-                                    href="#"
+                                    href="https://www.linkedin.com/company/pt-retro-ciptaharsa-nawasena/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="LinkedIn"
                                     className="bg-opacity-20 hover:bg-opacity-30 flex h-10 w-10 items-center justify-center transition-all duration-300"
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 27 27" fill="none">
@@ -73,6 +70,7 @@ const Footer: React.FC = () => {
                                     href="https://www.instagram.com/retrokonsultan/"
                                     target="_blank"
                                     rel="noopener noreferrer"
+                                    aria-label="Instagram"
                                     className="bg-opacity-20 hover:bg-opacity-30 flex h-10 w-10 items-center justify-center transition-all duration-300"
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 27 27" fill="none">
@@ -88,6 +86,7 @@ const Footer: React.FC = () => {
                                     href="https://www.tiktok.com/@retro.konsultan"
                                     target="_blank"
                                     rel="noopener noreferrer"
+                                    aria-label="TikTok"
                                     className="bg-opacity-20 hover:bg-opacity-30 flex h-10 w-10 items-center justify-center transition-all duration-300"
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 27 27" fill="none">

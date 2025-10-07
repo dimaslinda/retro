@@ -15,5 +15,7 @@ Route::get('/layanan/pbg', function () {
     return Inertia::render('layanan/PBG');
 })->name('layanan.pbg');
 
+Route::get('/api/articles', [IndexController::class, 'articles'])->name('api.articles');
+
 Route::post('/api/slf-checklist/send', [FonnteController::class, 'sendSlfChecklist'])->name('slf.checklist.send');
 Route::post('/api/pbg-checklist/send', [FonnteController::class, 'sendPbgChecklist'])->name('pbg.checklist.send');

@@ -1,4 +1,7 @@
 import { Head } from '@inertiajs/react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useEffect, useRef } from 'react';
 import AboutServiceSection from '../../components/AboutServiceSection';
 import AdvantageSection from '../../components/AdvantageSection';
 import CtaBannerSection from '../../components/CtaBannerSection';
@@ -7,7 +10,7 @@ import Header from '../../components/Header';
 import RoadmapSection from '../../components/RoadmapSection';
 import WhyNeedSection from '../../components/WhyNeedSection';
 
-export default function SLF() {
+export default function PBG() {
     const slfHeroContent = {
         title: 'Urus PBG Tanpa Ribet, Cepat, dan Pasti',
         description:
@@ -22,6 +25,84 @@ export default function SLF() {
         },
         backgroundImage: '/img/general/bg-pbg.png', // sementara gunakan gambar yang sama
     };
+
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        try {
+            if (!containerRef.current) return;
+            gsap.registerPlugin(ScrollTrigger);
+
+            const sections = Array.from(containerRef.current.children) as HTMLElement[];
+            const headerSection = sections[0];
+
+            // Animate hero (Header) on mount similar to SLF
+            if (headerSection) {
+                const heroItems = gsap.utils.toArray<HTMLElement>(headerSection.querySelectorAll('h1, h2, p, a, button'));
+                if (heroItems.length) {
+                    gsap.from(heroItems, {
+                        autoAlpha: 0,
+                        y: 20,
+                        duration: 0.8,
+                        stagger: 0.1,
+                        ease: 'power2.out',
+                        clearProps: 'transform,opacity,visibility',
+                    });
+                }
+            }
+
+            // Reveal remaining sections on scroll (exclude raw SVGs implicitly by targeting text/elements)
+            sections.slice(1).forEach((section) => {
+                gsap.from(section, {
+                    autoAlpha: 0,
+                    y: 30,
+                    duration: 0.8,
+                    ease: 'power3.out',
+                    immediateRender: false,
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'top 85%',
+                        toggleActions: 'play none none reverse',
+                    },
+                });
+
+                const items = gsap.utils.toArray<HTMLElement>(section.querySelectorAll('h1, h2, h3, p, a, button, li'));
+                if (items.length) {
+                    gsap.from(items, {
+                        autoAlpha: 0,
+                        y: 15,
+                        duration: 0.6,
+                        stagger: 0.08,
+                        ease: 'power2.out',
+                        immediateRender: false,
+                        clearProps: 'transform,opacity,visibility',
+                        scrollTrigger: {
+                            trigger: section,
+                            start: 'top 90%',
+                            toggleActions: 'play none none reverse',
+                        },
+                    });
+                }
+            });
+
+            ScrollTrigger.refresh();
+        } catch (err) {
+            // Jangan blok rendering jika animasi bermasalah
+            console.error('[PBG] GSAP animation error:', err);
+        }
+
+        return () => {
+            try {
+                ScrollTrigger.getAll().forEach((st) => st.kill());
+                if (containerRef.current) {
+                    const nodes = Array.from(containerRef.current.children) as Element[];
+                    gsap.killTweensOf(nodes);
+                }
+            } catch {
+                // noop
+            }
+        };
+    }, []);
 
     // Data untuk AboutServiceSection
     const pbgAboutData = {
@@ -212,7 +293,7 @@ export default function SLF() {
                     <path d="M20.6996 4.59998C18.2596 4.59998 15.9196 5.56926 14.1942 7.29459C12.4689 9.01993 11.4996 11.36 11.4996 13.8C11.4996 16.24 12.4689 18.58 14.1942 20.3054C15.9196 22.0307 18.2596 23 20.6996 23C23.1396 23 25.4797 22.0307 27.205 20.3054C28.9303 18.58 29.8996 16.24 29.8996 13.8C29.8996 11.36 28.9303 9.01993 27.205 7.29459C25.4797 5.56926 23.1396 4.59998 20.6996 4.59998ZM13.7996 13.8C13.7996 11.97 14.5266 10.2149 15.8206 8.92094C17.1146 7.62694 18.8696 6.89998 20.6996 6.89998C22.5296 6.89998 24.2846 7.62694 25.5786 8.92094C26.8726 10.2149 27.5996 11.97 27.5996 13.8C27.5996 15.63 26.8726 17.385 25.5786 18.679C24.2846 19.973 22.5296 20.7 20.6996 20.7C18.8696 20.7 17.1146 19.973 15.8206 18.679C14.5266 17.385 13.7996 15.63 13.7996 13.8ZM9.22031 25.3C8.61449 25.2972 8.0141 25.4142 7.45361 25.6442C6.89312 25.8741 6.38357 26.2125 5.95423 26.6399C5.52488 27.0674 5.1842 27.5754 4.95173 28.1348C4.71927 28.6943 4.5996 29.2941 4.59961 29.9C4.59961 33.7893 6.51551 36.7218 9.51011 38.6331C12.4587 40.5122 16.4331 41.4 20.6996 41.4C21.6457 41.4 22.5733 41.3563 23.4826 41.2689C22.9338 40.5856 22.4574 39.8472 22.0612 39.0655C21.615 39.0885 21.1611 39.1 20.6996 39.1C16.7091 39.1 13.2085 38.2628 10.7475 36.6919C8.33251 35.1509 6.89961 32.913 6.89961 29.9C6.89961 28.6281 7.93001 27.6 9.22031 27.6H22.0773C22.502 26.775 23.0065 26.0084 23.5907 25.3H9.22031ZM43.6996 33.35C43.6996 36.095 42.6092 38.7275 40.6682 40.6685C38.7272 42.6095 36.0946 43.7 33.3496 43.7C30.6046 43.7 27.9721 42.6095 26.0311 40.6685C24.0901 38.7275 22.9996 36.095 22.9996 33.35C22.9996 30.605 24.0901 27.9724 26.0311 26.0314C27.9721 24.0904 30.6046 23 33.3496 23C36.0946 23 38.7272 24.0904 40.6682 26.0314C42.6092 27.9724 43.6996 30.605 43.6996 33.35ZM34.4444 27.278C34.378 27.0387 34.235 26.8277 34.0372 26.6774C33.8395 26.5271 33.598 26.4457 33.3496 26.4457C33.1012 26.4457 32.8597 26.5271 32.662 26.6774C32.4643 26.8277 32.3212 27.0387 32.2548 27.278L31.1577 30.8016H27.5996C26.4864 30.8016 26.0218 32.2897 26.9234 32.9728L29.7984 35.1509L28.7013 38.6745C28.3563 39.7785 29.5707 40.6985 30.4723 40.0154L33.3473 37.8373L36.2223 40.0154C37.1239 40.6985 38.3383 39.7785 37.9933 38.6745L36.8962 35.1509L39.7712 32.9728C40.6728 32.2897 40.2082 30.8016 39.095 30.8016H35.5415L34.4444 27.278Z" fill="#0B3AB1"/>
                 </svg>`,
                 title: 'Tingkat Keberhasilan Tinggi ',
-                description: 'Portofolio kami membuktikan komitmen kami dalam memastikan setiap klien mendapatkan PBG mereka.',
+                description: 'Portofolio kami membuktikan kami dalam memastikan setiap klien mendapatkan PBG mereka.',
             },
         ],
     };
@@ -265,7 +346,7 @@ export default function SLF() {
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
                 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
             </Head>
-            <div className="min-h-screen font-mons">
+            <div className="min-h-screen font-mons" ref={containerRef}>
                 <Header heroContent={slfHeroContent} />
 
                 <AboutServiceSection {...pbgAboutData} />

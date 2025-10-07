@@ -30,7 +30,7 @@ const Magazine: React.FC = () => {
                     {/* Magazine Image 1 */}
                     <a href="#" className="magazine-card group block cursor-pointer" data-magazine="1">
                         <img
-                            src="/img/general/magazine.png"
+                            src="/img/general/magazine-1.png"
                             alt="Company Profile 2025"
                             className="h-80 w-64 rounded-lg object-cover shadow-2xl transition-all duration-300"
                         />
@@ -39,7 +39,7 @@ const Magazine: React.FC = () => {
                     {/* Magazine Image 2 */}
                     <a href="#" className="magazine-card group block cursor-pointer" data-magazine="2">
                         <img
-                            src="/img/general/magazine.png"
+                            src="/img/general/magazine-2.png"
                             alt="Company Profile 2025"
                             className="h-80 w-64 rounded-lg object-cover shadow-2xl transition-all duration-300"
                         />
@@ -48,7 +48,7 @@ const Magazine: React.FC = () => {
                     {/* Magazine Image 3 */}
                     <a href="#" className="magazine-card group block cursor-pointer" data-magazine="3">
                         <img
-                            src="/img/general/magazine.png"
+                            src="/img/general/magazine-3.png"
                             alt="Company Profile 2025"
                             className="h-80 w-64 rounded-lg object-cover shadow-2xl transition-all duration-300"
                         />
@@ -57,7 +57,7 @@ const Magazine: React.FC = () => {
                     {/* Featured Magazine Image */}
                     <a href="#" className="magazine-card group block cursor-pointer" data-magazine="featured">
                         <img
-                            src="/img/general/magazine.png"
+                            src="/img/general/magazine-4.png"
                             alt="Company Profile 2025 Featured"
                             className="h-80 w-64 rounded-lg object-cover shadow-2xl transition-all duration-300"
                         />

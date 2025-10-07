@@ -1,4 +1,7 @@
 import { Head } from '@inertiajs/react';
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import AboutServiceSection from '../../components/AboutServiceSection';
 import AdvantageSection from '../../components/AdvantageSection';
 import CtaBannerSection from '../../components/CtaBannerSection';
@@ -22,6 +25,78 @@ export default function SLF() {
         },
         backgroundImage: '/img/general/bg-slf.png', // Menggunakan gambar yang sama dulu, bisa diganti nanti
     };
+
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (!containerRef.current) return;
+        gsap.registerPlugin(ScrollTrigger);
+
+        const sections = Array.from(containerRef.current.children) as HTMLElement[];
+        const headerSection = sections[0];
+
+        // Animate hero (Header) on mount so user immediately sees GSAP effect
+        if (headerSection) {
+            const heroItems = gsap.utils.toArray<HTMLElement>(
+                headerSection.querySelectorAll('h1, h2, p, a, button')
+            );
+            if (heroItems.length) {
+                gsap.from(heroItems, {
+                    autoAlpha: 0,
+                    y: 20,
+                    duration: 0.8,
+                    stagger: 0.1,
+                    ease: 'power2.out',
+                    clearProps: 'transform,opacity,visibility',
+                });
+            }
+        }
+
+        // Reveal remaining sections on scroll
+        sections.slice(1).forEach((section) => {
+            gsap.from(section, {
+                autoAlpha: 0,
+                y: 30,
+                duration: 0.8,
+                ease: 'power3.out',
+                immediateRender: false,
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top 85%',
+                    toggleActions: 'play none none reverse',
+                },
+            });
+
+            // Stagger reveal for common text elements inside sections
+            const items = gsap.utils.toArray<HTMLElement>(
+                section.querySelectorAll('h1, h2, h3, p, a, button, li')
+            );
+            if (items.length) {
+                gsap.from(items, {
+                    autoAlpha: 0,
+                    y: 15,
+                    duration: 0.6,
+                    stagger: 0.08,
+                    ease: 'power2.out',
+                    immediateRender: false,
+                    clearProps: 'transform,opacity,visibility',
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'top 90%',
+                        toggleActions: 'play none none reverse',
+                    },
+                });
+            }
+        });
+
+        // Ensure ScrollTrigger calculates correct positions after images/fonts load
+        ScrollTrigger.refresh();
+
+        return () => {
+            ScrollTrigger.getAll().forEach((st) => st.kill());
+            gsap.killTweensOf(sections);
+        };
+    }, []);
 
     // Data untuk AboutServiceSection
     const slfAboutData = {
@@ -226,7 +301,7 @@ export default function SLF() {
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
                 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
             </Head>
-            <div className="min-h-screen font-mons">
+            <div className="min-h-screen font-mons" ref={containerRef}>
                 <Header heroContent={slfHeroContent} />
 
                 <AboutServiceSection {...slfAboutData} />
@@ -259,7 +334,7 @@ export default function SLF() {
                     titleParts={['Proses Mudah,', 'Hasil', 'Maksimal']}
                     description="Jangan tunda lagi! Setiap hari tanpa SLF adalah risiko besar bagi bangunan Anda. Hubungi kami sekarang dan wujudkan bangunan yang aman, legal, dan bernilai tinggi."
                     buttonLabel="Konsultasi Gratis"
-                    buttonHref="#"
+                    buttonHref="https://wa.me/6285117635738?text=Halo%20Retro%2C%20saya%20ingin%20konsultasi"
                     containerBgClass="bg-[#0B3AB1]"
                     textBgClass="bg-[#0B3AB1] lg:bg-transparent"
                 />

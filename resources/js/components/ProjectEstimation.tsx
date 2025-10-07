@@ -196,6 +196,11 @@ const ProjectEstimation: React.FC = () => {
         return lines.join('\n');
     };
 
+    // Define response type for checklist API
+    type ChecklistResponse = {
+        message?: string;
+        excel_url?: string;
+    };
     const handleChecklistSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
@@ -228,13 +233,13 @@ const ProjectEstimation: React.FC = () => {
                 headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': csrf },
                 body: JSON.stringify(payload),
             });
-            const data = await res.json().catch(() => ({}));
+            const data: ChecklistResponse = await res.json().catch(() => ({}) as ChecklistResponse);
             if (!res.ok) {
-                throw new Error((data && (data.message as string)) || 'Gagal mengirim checklist.');
+                throw new Error(data?.message ?? 'Gagal mengirim checklist.');
             }
             // Simpan link excel (opsional), lalu tutup modal otomatis
-            if (data && (data as any).excel_url) {
-                setExcelUrl((data as any).excel_url as string);
+            if (data?.excel_url) {
+                setExcelUrl(data.excel_url);
             }
             // Tutup modal otomatis setelah pengiriman berhasil
             setShowSlfChecklist(false);
@@ -645,12 +650,7 @@ const ProjectEstimation: React.FC = () => {
                                             <button
                                                 type="submit"
                                                 className="cursor-pointer rounded-md bg-[#0B3AB1] px-5 py-3 text-sm font-semibold text-white hover:bg-blue-700 disabled:opacity-50"
-                                                disabled={
-                                                    submitting ||
-                                                    !!whatsappError ||
-                                                    !isWhatsappValid(whatsapp) ||
-                                                    checklistValues.some((c) => !c.status)
-                                                }
+                                                disabled={submitting || !!whatsappError || !isWhatsappValid(whatsapp) || !allChecklistFilled}
                                             >
                                                 {submitting ? 'Mengirim...' : 'Hitung'}
                                             </button>
@@ -836,12 +836,7 @@ const ProjectEstimation: React.FC = () => {
                                             <button
                                                 type="submit"
                                                 className="cursor-pointer rounded-md bg-[#0B3AB1] px-5 py-3 text-sm font-semibold text-white hover:bg-blue-700 disabled:opacity-50"
-                                                disabled={
-                                                    submitting ||
-                                                    !!whatsappError ||
-                                                    !isWhatsappValid(whatsapp) ||
-                                                    checklistValues.some((c) => !c.status)
-                                                }
+                                                disabled={submitting || !!whatsappError || !isWhatsappValid(whatsapp) || !allChecklistFilled}
                                             >
                                                 {submitting ? 'Mengirim...' : 'Hitung'}
                                             </button>
