@@ -103,7 +103,7 @@ const Footer: React.FC = () => {
 
                 {/* Copyright */}
                 <div className="mt-8 pt-6 text-center">
-                    <p className="text-opacity-80 text-sm text-white">© PT. Kaizen Enjiniring Nusantara, All Right Reserved.</p>
+                    <p className="text-opacity-80 text-sm text-white">© PT. Retro Konsultan, All Right Reserved.</p>
                 </div>
             </div>
         </footer>
