@@ -25,54 +25,44 @@ const WhyNeedSection: React.FC<WhyNeedSectionProps> = ({
     benefits,
     backgroundColor = '#0B3AB1',
     backgroundPosition = 'left',
-    className = ''
+    className = '',
 }) => {
     return (
         <section className={`p-4 sm:p-6 lg:p-8 ${className}`}>
             <div
-                className="py-20 relative overflow-hidden rounded-2xl"
+                className="relative overflow-hidden rounded-2xl py-20"
                 style={{
                     backgroundImage: `url('${backgroundImage}')`,
                     backgroundSize: 'cover',
                     backgroundPosition: backgroundPosition,
-                    backgroundRepeat: 'no-repeat'
+                    backgroundRepeat: 'no-repeat',
                 }}
             >
-                <div className="container mx-auto px-6 relative z-10">
-                    <div className="max-w-7xl mx-auto">
+                <div className="relative z-10 container mx-auto px-6">
+                    <div className="mx-auto max-w-7xl">
                         {/* Layout Horizontal - Judul di kiri, Benefits di kanan */}
-                        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
+                        <div className="flex flex-col items-center gap-8 lg:flex-row lg:gap-16">
                             {/* Left Side - Title */}
-                            <div className="lg:w-1/3 text-center lg:text-left">
-                                <h2 
-                                    className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-tight"
+                            <div className="text-center md:text-left lg:w-1/3">
+                                <h2
+                                    className="text-3xl leading-tight font-bold text-white lg:text-4xl xl:text-5xl"
                                     dangerouslySetInnerHTML={{ __html: title }}
                                 />
-                                {subtitle && (
-                                    <p className="text-lg text-blue-100 mt-4 hidden lg:block">
-                                        {subtitle}
-                                    </p>
-                                )}
+                                {subtitle && <p className="mt-4 hidden text-lg text-blue-100 lg:block">{subtitle}</p>}
                             </div>
 
                             {/* Right Side - Benefits Grid */}
                             <div className="lg:w-2/3">
-                                <div className="grid grid-cols-2 gap-4 max-w-xl mx-auto lg:mx-0">
+                                <div className="mx-auto grid max-w-xl grid-cols-2 gap-4 lg:mx-0">
                                     {benefits.map((benefit, index) => (
-                                        <div 
+                                        <div
                                             key={index}
-                                            className="bg-opacity-15 backdrop-blur-sm p-4 hover:bg-opacity-25 transition-all duration-300"
+                                            className="bg-opacity-15 hover:bg-opacity-25 p-4 backdrop-blur-sm transition-all duration-300"
                                             style={{ backgroundColor: `${backgroundColor}` }}
                                         >
-                                            <div className="w-12 h-12 bg-transparent bg-opacity-20 rounded-lg flex mb-3">
-                                                {benefit.icon}
-                                            </div>
-                                            <h3 className="text-sm font-bold text-white mb-1">
-                                                {benefit.title}
-                                            </h3>
-                                            <h3 className="text-xs font-light text-white">
-                                                {benefit.description}
-                                            </h3>
+                                            <div className="bg-opacity-20 mb-3 flex h-12 w-12 rounded-lg bg-transparent">{benefit.icon}</div>
+                                            <h3 className="mb-1 text-sm font-bold text-white">{benefit.title}</h3>
+                                            <h3 className="text-xs font-light text-white">{benefit.description}</h3>
                                         </div>
                                     ))}
                                 </div>

@@ -131,7 +131,8 @@ export default function SLF() {
     // Data untuk WhyNeedSection
     const whyNeedSLFData = {
         title: 'Kenapa Anda<br />Harus Punya<br />SLF?',
-        subtitle: 'SLF adalah dokumen wajib yang harus dimiliki setiap bangunan gedung',
+        subtitle:
+            'Memiliki Sertifikat Laik Fungsi (SLF) adalah bukti bahwa bangunan Anda telah memenuhi standar keselamatan, kesehatan, kenyamanan, dan kemudahan sesuai peraturan pemerintah.',
         backgroundImage: '/img/general/bg-slf2.webp',
         benefits: [
             {
@@ -299,9 +300,7 @@ export default function SLF() {
                 <meta name="description" content={seo?.description || ''} />
                 <meta name="keywords" content={seo?.keywords?.join(', ') || ''} />
                 {/* JSON-LD Schema.org */}
-                <script type="application/ld+json">
-                    {JSON.stringify(seo?.jsonLd || {})}
-                </script>
+                <script type="application/ld+json">{JSON.stringify(seo?.jsonLd || {})}</script>
             </Head>
             <div className="min-h-screen font-mons" ref={containerRef}>
                 <Header heroContent={slfHeroContent} />
