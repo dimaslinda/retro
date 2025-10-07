@@ -1,4 +1,4 @@
-import { Head } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useEffect, useRef } from 'react';
@@ -11,6 +11,14 @@ import RoadmapSection from '../../components/RoadmapSection';
 import WhyNeedSection from '../../components/WhyNeedSection';
 
 export default function PBG() {
+    interface SEOProps {
+        title?: string;
+        description?: string;
+        keywords?: string[];
+        jsonLd?: Record<string, unknown>;
+    }
+    const { props } = usePage<{ seo?: SEOProps }>();
+    const seo = props?.seo;
     const slfHeroContent = {
         title: 'Urus PBG Tanpa Ribet, Cepat, dan Pasti',
         description:
@@ -341,10 +349,12 @@ export default function PBG() {
 
     return (
         <>
-            <Head title="Retro Ciptakarsa Nusantara">
-                <link rel="preconnect" href="https://fonts.googleapis.com" />
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-                <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+            <Head title={seo?.title || 'Jasa Pengurusan Persetujuan Bangunan Gedung (PBG)'}>
+                {/* Meta from controller */}
+                <meta name="description" content={seo?.description || ''} />
+                <meta name="keywords" content={seo?.keywords?.join(', ') || ''} />
+                {/* JSON-LD Schema.org */}
+                <script type="application/ld+json">{JSON.stringify(seo?.jsonLd || {})}</script>
             </Head>
             <div className="min-h-screen font-mons" ref={containerRef}>
                 <Header heroContent={slfHeroContent} />

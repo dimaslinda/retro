@@ -7,13 +7,11 @@ use Inertia\Inertia;
 
 Route::get('/', [IndexController::class, 'index'])->name('home');
 
-Route::get('/layanan/slf', function () {
-    return Inertia::render('layanan/SLF');
-})->name('layanan.slf');
+use App\Http\Controllers\LayananController;
 
-Route::get('/layanan/pbg', function () {
-    return Inertia::render('layanan/PBG');
-})->name('layanan.pbg');
+Route::get('/layanan/slf', [LayananController::class, 'slf'])->name('layanan.slf');
+
+Route::get('/layanan/pbg', [LayananController::class, 'pbg'])->name('layanan.pbg');
 
 Route::get('/api/articles', [IndexController::class, 'articles'])->name('api.articles');
 

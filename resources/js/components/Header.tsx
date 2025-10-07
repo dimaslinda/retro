@@ -71,7 +71,7 @@ export default function Header({ heroContent }: HeaderProps) {
                         <div className="flex items-start justify-between p-6 lg:p-0">
                             {/* Logo */}
                             <div className="flex items-center pt-3 pl-10">
-                                <img src="/img/general/logo.webp" alt="Retro Ciptakarsa Nusantara" className="h-10 w-auto xl:h-15" />
+                                <img src="/img/general/logo.webp" alt="PT. Retro Konsultan" className="h-10 w-auto xl:h-15" />
                             </div>
 
                             {/* Desktop Navigation */}

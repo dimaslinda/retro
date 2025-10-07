@@ -1,4 +1,4 @@
-import { Head } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useEffect, useRef } from 'react';
@@ -32,8 +32,17 @@ interface WPPost {
     _embedded?: { ['wp:featuredmedia']?: WPFeaturedMedia[] };
 }
 
+interface SEOProps {
+    title?: string;
+    description?: string;
+    keywords?: string[];
+    jsonLd?: Record<string, unknown>;
+}
+
 export default function Index({ articles, articlesError }: IndexProps) {
     const containerRef = useRef<HTMLDivElement>(null);
+    const { props } = usePage<{ seo?: SEOProps }>();
+    const seo = props?.seo || {} as SEOProps;
 
     // GSAP animations for magazine images
     useEffect(() => {
@@ -127,9 +136,7 @@ export default function Index({ articles, articlesError }: IndexProps) {
             });
 
             // Stagger reveal for text-only child elements (exclude images and card containers)
-            const items = gsap.utils.toArray<HTMLElement>(
-                section.querySelectorAll('h1, h2, h3, p, a, button, li'),
-            );
+            const items = gsap.utils.toArray<HTMLElement>(section.querySelectorAll('h1, h2, h3, p, a, button, li'));
             if (items.length) {
                 gsap.from(items, {
                     opacity: 0,
@@ -156,13 +163,17 @@ export default function Index({ articles, articlesError }: IndexProps) {
 
     return (
         <>
-            <Head title="Retro Ciptakarsa Nusantara">
+            <Head title={seo?.title || 'PT. Retro Konsultan'}>
+                {/* Meta from controller */}
+                <meta name="description" content={seo?.description || ''} />
+                <meta name="keywords" content={(seo?.keywords || []).join(', ')} />
+                {/* JSON-LD Schema.org */}
+                <script type="application/ld+json">
+                    {JSON.stringify(seo?.jsonLd || {})}
+                </script>
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-                <link
-                    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-                    rel="stylesheet"
-                />
+                <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
             </Head>
 
             <div className="min-h-screen font-mons" ref={containerRef}>
