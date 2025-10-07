@@ -23,7 +23,7 @@ export default function PBG() {
                 consultSection.scrollIntoView({ behavior: 'smooth' });
             }
         },
-        backgroundImage: '/img/general/bg-pbg.png', // sementara gunakan gambar yang sama
+        backgroundImage: '/img/general/bg-pbg.webp', // sementara gunakan gambar yang sama
     };
 
     const containerRef = useRef<HTMLDivElement>(null);
@@ -131,7 +131,7 @@ export default function PBG() {
             },
         ],
         image: {
-            src: '/img/general/profile-pbg.png',
+            src: '/img/general/profile-pbg.webp',
             alt: 'Pekerja konstruksi sedang melakukan inspeksi bangunan',
         },
     };
@@ -140,7 +140,7 @@ export default function PBG() {
     const whyNeedPBGData = {
         title: 'Kenapa Anda<br />Harus Punya<br />PBG?',
         subtitle: 'PBG adalah dokumen wajib yang harus dimiliki setiap bangunan gedung',
-        backgroundImage: '/img/general/bg-slf2.png',
+        backgroundImage: '/img/general/bg-slf2.webp',
         benefits: [
             {
                 icon: (
@@ -372,9 +372,9 @@ export default function PBG() {
                 />
 
                 <CtaBannerSection
-                    bgImage="/img/general/bg-mitra.png"
+                    bgImage="/img/general/bg-mitra.webp"
                     containerMaxWidth="max-w-7xl"
-                    leftImageSrc="/img/general/slf-cta.png"
+                    leftImageSrc="/img/general/slf-cta.webp"
                     leftImageAlt="SLF CTA"
                     titleParts={['Proses Mudah,', 'Hasil', 'Maksimal']}
                     description="Jangan tunda lagi! Setiap hari tanpa SLF adalah risiko besar bagi bangunan Anda. Hubungi kami sekarang dan wujudkan bangunan yang aman, legal, dan bernilai tinggi."

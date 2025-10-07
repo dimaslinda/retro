@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
                     {/* Logo Section */}
                     <div className="flex justify-center md:justify-start">
                         <div className="flex flex-col items-center md:items-start">
-                            <img src="/img/general/logo-footer.png" alt="Retro Optitaharsa Nawasena" className="mb-2 w-52" />
+                            <img src="/img/general/logo-footer.webp" alt="Retro Optitaharsa Nawasena" className="mb-2 w-52" />
                         </div>
                     </div>
 

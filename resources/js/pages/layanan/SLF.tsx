@@ -1,7 +1,7 @@
 import { Head } from '@inertiajs/react';
-import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useEffect, useRef } from 'react';
 import AboutServiceSection from '../../components/AboutServiceSection';
 import AdvantageSection from '../../components/AdvantageSection';
 import CtaBannerSection from '../../components/CtaBannerSection';
@@ -23,7 +23,7 @@ export default function SLF() {
                 consultSection.scrollIntoView({ behavior: 'smooth' });
             }
         },
-        backgroundImage: '/img/general/bg-slf.png', // Menggunakan gambar yang sama dulu, bisa diganti nanti
+        backgroundImage: '/img/general/bg-slf.webp', // Menggunakan gambar yang sama dulu, bisa diganti nanti
     };
 
     const containerRef = useRef<HTMLDivElement>(null);
@@ -37,9 +37,7 @@ export default function SLF() {
 
         // Animate hero (Header) on mount so user immediately sees GSAP effect
         if (headerSection) {
-            const heroItems = gsap.utils.toArray<HTMLElement>(
-                headerSection.querySelectorAll('h1, h2, p, a, button')
-            );
+            const heroItems = gsap.utils.toArray<HTMLElement>(headerSection.querySelectorAll('h1, h2, p, a, button'));
             if (heroItems.length) {
                 gsap.from(heroItems, {
                     autoAlpha: 0,
@@ -68,9 +66,7 @@ export default function SLF() {
             });
 
             // Stagger reveal for common text elements inside sections
-            const items = gsap.utils.toArray<HTMLElement>(
-                section.querySelectorAll('h1, h2, h3, p, a, button, li')
-            );
+            const items = gsap.utils.toArray<HTMLElement>(section.querySelectorAll('h1, h2, h3, p, a, button, li'));
             if (items.length) {
                 gsap.from(items, {
                     autoAlpha: 0,
@@ -125,7 +121,7 @@ export default function SLF() {
             },
         ],
         image: {
-            src: '/img/general/profile-slf.png',
+            src: '/img/general/profile-slf.webp',
             alt: 'Pekerja konstruksi sedang melakukan inspeksi bangunan',
         },
     };
@@ -134,7 +130,7 @@ export default function SLF() {
     const whyNeedSLFData = {
         title: 'Kenapa Anda<br />Harus Punya<br />SLF?',
         subtitle: 'SLF adalah dokumen wajib yang harus dimiliki setiap bangunan gedung',
-        backgroundImage: '/img/general/bg-slf2.png',
+        backgroundImage: '/img/general/bg-slf2.webp',
         benefits: [
             {
                 icon: (
@@ -327,9 +323,9 @@ export default function SLF() {
                 />
 
                 <CtaBannerSection
-                    bgImage="/img/general/bg-mitra.png"
+                    bgImage="/img/general/bg-mitra.webp"
                     containerMaxWidth="max-w-7xl"
-                    leftImageSrc="/img/general/slf-cta.png"
+                    leftImageSrc="/img/general/slf-cta.webp"
                     leftImageAlt="SLF CTA"
                     titleParts={['Proses Mudah,', 'Hasil', 'Maksimal']}
                     description="Jangan tunda lagi! Setiap hari tanpa SLF adalah risiko besar bagi bangunan Anda. Hubungi kami sekarang dan wujudkan bangunan yang aman, legal, dan bernilai tinggi."

@@ -309,7 +309,7 @@ const ProjectEstimation: React.FC = () => {
                 <div
                     className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                     style={{
-                        backgroundImage: "url('/img/general/estimasi.png')",
+                        backgroundImage: "url('/img/general/estimasi.webp')",
                     }}
                 ></div>
 

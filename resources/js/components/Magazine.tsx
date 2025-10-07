@@ -5,7 +5,7 @@ const Magazine: React.FC = () => {
         <section className="relative overflow-hidden py-16" style={{ background: 'linear-gradient(180deg, #5BDFFB 0%, #0B3AB1 100%)' }}>
             {/* Background Magazine Image - Right Side */}
             <div className="absolute top-0 right-0 h-full w-1/2">
-                <img src="/img/general/magazine.png" alt="Background Magazine" className="h-full w-full object-cover opacity-20" />
+                <img src="/img/general/magazine-1.webp" alt="Background Magazine" className="h-full w-full object-cover opacity-20" />
             </div>
 
             {/* Background Pattern */}
@@ -30,7 +30,7 @@ const Magazine: React.FC = () => {
                     {/* Magazine Image 1 */}
                     <a href="#" className="magazine-card group block cursor-pointer" data-magazine="1">
                         <img
-                            src="/img/general/magazine-1.png"
+                            src="/img/general/magazine-1.webp"
                             alt="Company Profile 2025"
                             className="h-80 w-64 rounded-lg object-cover shadow-2xl transition-all duration-300"
                         />
@@ -39,7 +39,7 @@ const Magazine: React.FC = () => {
                     {/* Magazine Image 2 */}
                     <a href="#" className="magazine-card group block cursor-pointer" data-magazine="2">
                         <img
-                            src="/img/general/magazine-2.png"
+                            src="/img/general/magazine-2.webp"
                             alt="Company Profile 2025"
                             className="h-80 w-64 rounded-lg object-cover shadow-2xl transition-all duration-300"
                         />
@@ -48,7 +48,7 @@ const Magazine: React.FC = () => {
                     {/* Magazine Image 3 */}
                     <a href="#" className="magazine-card group block cursor-pointer" data-magazine="3">
                         <img
-                            src="/img/general/magazine-3.png"
+                            src="/img/general/magazine-3.webp"
                             alt="Company Profile 2025"
                             className="h-80 w-64 rounded-lg object-cover shadow-2xl transition-all duration-300"
                         />
@@ -57,7 +57,7 @@ const Magazine: React.FC = () => {
                     {/* Featured Magazine Image */}
                     <a href="#" className="magazine-card group block cursor-pointer" data-magazine="featured">
                         <img
-                            src="/img/general/magazine-4.png"
+                            src="/img/general/magazine-4.webp"
                             alt="Company Profile 2025 Featured"
                             className="h-80 w-64 rounded-lg object-cover shadow-2xl transition-all duration-300"
                         />

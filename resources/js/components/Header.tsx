@@ -25,7 +25,7 @@ export default function Header({ heroContent }: HeaderProps) {
         description:
             'Retro Hadir sebagai mitra terpercaya dalam memberikan solusi SLF dan K3 PU. Kami memiliki pengalaman dan komitmen untuk memberikan layanan terbaik dengan standar yang tinggi dan sesuai regulasi.',
         buttonText: 'KONSULTASI SEKARANG',
-        backgroundImage: '/img/general/banner.png',
+        backgroundImage: '/img/general/banner.webp',
     };
 
     const currentHeroContent = heroContent || defaultHeroContent;
@@ -71,7 +71,7 @@ export default function Header({ heroContent }: HeaderProps) {
                         <div className="flex items-start justify-between p-6 lg:p-0">
                             {/* Logo */}
                             <div className="flex items-center pt-3 pl-10">
-                                <img src="/img/general/logo.png" alt="Retro Ciptakarsa Nusantara" className="h-10 w-auto xl:h-15" />
+                                <img src="/img/general/logo.webp" alt="Retro Ciptakarsa Nusantara" className="h-10 w-auto xl:h-15" />
                             </div>
 
                             {/* Desktop Navigation */}
@@ -79,7 +79,7 @@ export default function Header({ heroContent }: HeaderProps) {
                                 <div
                                     className="relative bg-cover bg-center bg-no-repeat px-15 py-3"
                                     style={{
-                                        backgroundImage: "url('/img/general/navbar.png')",
+                                        backgroundImage: "url('/img/general/navbar.webp')",
                                     }}
                                 >
                                     <div className="flex items-center space-x-8">

@@ -26,7 +26,7 @@ const About: React.FC = () => {
                     </div>
                     <div className="about-images">
                         <div className="about-image-container">
-                            <img src="/img/general/tentang.png" alt="Tim konstruksi profesional" className="about-image" />
+                            <img src="/img/general/tentang.webp" alt="Tim konstruksi profesional" className="about-image" />
                             <div className="about-image-overlay"></div>
                         </div>
                     </div>
