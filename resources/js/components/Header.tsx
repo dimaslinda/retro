@@ -17,6 +17,7 @@ export default function Header({ heroContent }: HeaderProps) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
+    const mobileDropdownRef = useRef<HTMLDivElement>(null);
 
     // Default hero content
     const defaultHeroContent: HeroContent = {
@@ -36,17 +37,22 @@ export default function Header({ heroContent }: HeaderProps) {
     const isActiveSLF = currentPath.startsWith('/layanan/slf');
     const isActivePBG = currentPath.startsWith('/layanan/pbg');
 
-    // Close dropdown when clicking outside
+    // Close dropdown when clicking outside (supports desktop and mobile dropdown containers)
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+            const target = event.target as Node;
+            const insideDesktop = dropdownRef.current?.contains(target) ?? false;
+            const insideMobile = mobileDropdownRef.current?.contains(target) ?? false;
+
+            if (!insideDesktop && !insideMobile) {
                 setIsServicesDropdownOpen(false);
             }
         }
 
-        document.addEventListener('mousedown', handleClickOutside);
+        // Use 'click' instead of 'mousedown' so onClick toggles run first
+        document.addEventListener('click', handleClickOutside);
         return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('click', handleClickOutside);
         };
     }, []);
 
@@ -83,13 +89,16 @@ export default function Header({ heroContent }: HeaderProps) {
                                         >
                                             BERANDA
                                         </a>
-                                        <a href="/#tentang-kami" className={`text-lg font-semibold tracking-wide uppercase transition-colors`}>
+                                        <a
+                                            href="/#tentang-kami"
+                                            className={`text-lg font-semibold tracking-wide text-gray-700 uppercase transition-colors hover:text-blue-600`}
+                                        >
                                             TENTANG KAMI
                                         </a>
                                         <div className="relative" ref={dropdownRef}>
                                             <button
                                                 onClick={() => setIsServicesDropdownOpen(!isServicesDropdownOpen)}
-                                                className={`flex items-center text-lg font-medium tracking-wide uppercase transition-colors ${isServicesActive ? 'text-[#0B3AB1]' : 'text-gray-700 hover:text-blue-600'}`}
+                                                className={`flex items-center text-lg font-semibold tracking-wide uppercase transition-colors ${isServicesActive ? 'text-[#0B3AB1]' : 'text-gray-700 hover:text-blue-600'}`}
                                             >
                                                 LAYANAN KAMI
                                                 <svg
@@ -213,7 +222,7 @@ export default function Header({ heroContent }: HeaderProps) {
                                     </a>
 
                                     {/* Mobile Services Dropdown */}
-                                    <div>
+                                    <div ref={mobileDropdownRef}>
                                         <button
                                             onClick={() => setIsServicesDropdownOpen(!isServicesDropdownOpen)}
                                             className="flex w-full items-center justify-between px-3 py-2 text-gray-700 hover:text-blue-600"
