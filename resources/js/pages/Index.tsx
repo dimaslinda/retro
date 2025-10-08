@@ -42,7 +42,7 @@ interface SEOProps {
 export default function Index({ articles, articlesError }: IndexProps) {
     const containerRef = useRef<HTMLDivElement>(null);
     const { props } = usePage<{ seo?: SEOProps }>();
-    const seo = props?.seo || {} as SEOProps;
+    const seo = props?.seo || ({} as SEOProps);
 
     // GSAP animations for magazine images
     useEffect(() => {
@@ -168,12 +168,23 @@ export default function Index({ articles, articlesError }: IndexProps) {
                 <meta name="description" content={seo?.description || ''} />
                 <meta name="keywords" content={(seo?.keywords || []).join(', ')} />
                 {/* JSON-LD Schema.org */}
-                <script type="application/ld+json">
-                    {JSON.stringify(seo?.jsonLd || {})}
-                </script>
+                <script type="application/ld+json">{JSON.stringify(seo?.jsonLd || {})}</script>
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
                 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+
+                <script async src="https://www.googletagmanager.com/gtag/js?id=G-XEPGPGERHZ"></script>
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+
+                        gtag('config', 'G-XEPGPGERHZ');
+`,
+                    }}
+                />
             </Head>
 
             <div className="min-h-screen font-mons" ref={containerRef}>

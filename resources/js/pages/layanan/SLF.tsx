@@ -301,6 +301,18 @@ export default function SLF() {
                 <meta name="keywords" content={seo?.keywords?.join(', ') || ''} />
                 {/* JSON-LD Schema.org */}
                 <script type="application/ld+json">{JSON.stringify(seo?.jsonLd || {})}</script>
+
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+
+                        gtag('config', 'G-XEPGPGERHZ');
+`,
+                    }}
+                />
             </Head>
             <div className="min-h-screen font-mons" ref={containerRef}>
                 <Header heroContent={slfHeroContent} />
